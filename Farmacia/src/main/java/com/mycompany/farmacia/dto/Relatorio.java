@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.farmacia.dto;
+import com.mycompany.farmacia.dto.Produto;
+import java.util.List;
+import java.util.ArrayList;
 
-/**
- *
- * @author Aluno
- */
 public class Relatorio {
-    
+    List<Produto> produtos;
+    static{
+        new ArrayList<>();
+    }
 }
