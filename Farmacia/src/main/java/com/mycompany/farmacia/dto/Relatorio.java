@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Relatorio {
-    List<Produto> produtos;
-    static{
-        new ArrayList<>();
+    List<Produto> produtos = new ArrayList<>();
+
+    public List<Produto> getProdutos() {
+        return produtos;
     }
 }
