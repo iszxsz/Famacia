@@ -4,9 +4,14 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Relatorio {
-    List<Produto> produtos = new ArrayList<>();
+    private List<Produto> produtos = new ArrayList<>();
+    private List<String> dataVenda = new ArrayList<>();
 
     public List<Produto> getProdutos() {
         return produtos;
+    }
+    
+    public List<String> getDatas(){
+        return dataVenda;
     }
 }
