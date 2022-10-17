@@ -28,16 +28,11 @@ public class RotuloDAO {
         return null;
     }
    
-    public static Rotulo cadastrar (String nome) throws PersistenciaException{
-       
-        if (consultarPorNome(nome) == null){
-            Rotulo r = new Rotulo(chave, nome);
-            rotulo.add(r);
-            chave++;
-            return r;
-        }
-     
-        throw new PersistenciaException("Violação de campo único: nome");
+    public static void cadastrar (Rotulo r) throws PersistenciaException{
+        if(r.getNome().isEmpty())
+            throw new PersistenciaException("Violação de campo único: nome");
+        
+        rotulo.add(r);
     }
    
     public static List<Rotulo> listarRotulo(){
