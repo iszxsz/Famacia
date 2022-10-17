@@ -9,9 +9,10 @@ public class Produto {
     private boolean receita;
     private String nome;
     private String validade;
+
     
     //Passa os valores nescessario para criar produto
-    public void Produto(Rotulo rotulo, int codigo, double valor, boolean receita, String nome, String validade){
+    public Produto(Rotulo rotulo, int codigo, double valor, boolean receita, String nome, String validade){
         this.rotulo = rotulo;
         this.codigo = codigo;
         this.valor = valor;
@@ -50,5 +51,9 @@ public class Produto {
 
     public void setValidade(String validade) {
         this.validade = validade;
+    }
+
+    public int getCodigo() {
+        return codigo;
     }
 }
