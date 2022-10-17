@@ -7,11 +7,11 @@ import java.util.List;
 
 public class RotuloDAO {
    
-    public static List<Rotulo> rotulos;
+    public static List<Rotulo> rotulo;
     private static int chave;
    
     static {
-        rotulos = new ArrayList<>();
+        rotulo = new ArrayList<>();
         chave = 1;
     }
    
@@ -19,7 +19,7 @@ public class RotuloDAO {
    
     public static Rotulo consultarPorNome (String nome){
        
-        for (Rotulo r: rotulos){
+        for (Rotulo r: rotulo){
             if(r.getNome().equals(nome)){
                 return r;
             }
@@ -32,7 +32,7 @@ public class RotuloDAO {
        
         if (consultarPorNome(nome) == null){
             Rotulo r = new Rotulo(chave, nome);
-            rotulos.add(r);
+            rotulo.add(r);
             chave++;
             return r;
         }
@@ -41,8 +41,8 @@ public class RotuloDAO {
     }
    
     public static List<Rotulo> rotulos(){
-        if(rotulos.isEmpty()!= true){
-            return rotulos;
+        if(rotulo.isEmpty()!= true){
+            return rotulo;
         }
        
         return null;
