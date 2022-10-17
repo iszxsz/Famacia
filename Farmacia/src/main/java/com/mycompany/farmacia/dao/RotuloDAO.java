@@ -40,7 +40,7 @@ public class RotuloDAO {
         throw new PersistenciaException("Violação de campo único: nome");
     }
    
-    public static List<Rotulo> rotulos(){
+    public static List<Rotulo> listarRotulo(){
         if(rotulo.isEmpty()!= true){
             return rotulo;
         }
