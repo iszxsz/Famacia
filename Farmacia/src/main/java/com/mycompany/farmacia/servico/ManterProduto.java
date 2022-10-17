@@ -15,7 +15,7 @@ public class ManterProduto {
         int codigo = 1;
         
         if (r == null) {
-            r = new Rotulo(0, "");
+            r = new Rotulo(0, nomeRotulo);
 
             for (Rotulo rt : rotulos) {
                 if (r.getCodigo() <= rt.getCodigo()) {
@@ -29,7 +29,7 @@ public class ManterProduto {
         for(Produto pd: produtos)
             if(codigo <= pd.getCodigo())
                 codigo = pd.getCodigo() + 1;
-        
+                    
         if(valor != 0){
             if(!nome.isEmpty()){
                 if(!validade.isEmpty()){
