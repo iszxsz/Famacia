@@ -2,6 +2,7 @@ package com.mycompany.farmacia.dao;
 
 import com.mycompany.farmacia.dto.Produto;
 import com.mycompany.farmacia.dto.Rotulo;
+import com.mycompany.farmacia.dao.RotuloDAO;
 import java.util.ArrayList;
 import java.util.List;
 
