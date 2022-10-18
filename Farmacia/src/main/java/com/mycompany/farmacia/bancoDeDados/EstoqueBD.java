@@ -50,6 +50,11 @@ public class EstoqueBD {
           System.out.println("Não conseguiu desconectar do BD.");
         }
   }
+    
+    
+    public static void main(String[] args) {
+        EstoqueBD.conectar();
+    }
     /**/
 
 }
