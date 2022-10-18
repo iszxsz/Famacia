@@ -10,5 +10,5 @@ package com.mycompany.farmacia.bancoDeDados;
  * @author Aluno
  */
 public class CaixaBD {
-    
+    //CAIXA
 }
