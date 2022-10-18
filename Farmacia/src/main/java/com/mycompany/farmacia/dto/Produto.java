@@ -44,6 +44,10 @@ public class Produto {
     public void setReceita(boolean receita) {
         this.receita = receita;
     }
+    
+    public boolean getReceita(){
+        return receita;
+    }
 
     public String getValidade() {
         return validade;
