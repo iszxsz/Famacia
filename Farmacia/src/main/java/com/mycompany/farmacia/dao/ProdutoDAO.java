@@ -4,6 +4,7 @@ import com.mycompany.farmacia.bancoDeDados.EstoqueBD;
 import com.mycompany.farmacia.dto.Produto;
 import com.mycompany.farmacia.dto.Rotulo;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -19,9 +20,18 @@ public class ProdutoDAO {
     private ProdutoDAO(){}
     
     public static Produto consultarPorNome(String nome){
-        for(Produto p: produtos)
-            if(nome.equals(p.getNome()))
-                return p;
+        Connection conn = EstoqueBD.conectar();
+        
+        try{
+            String consultar = "SELECT * FROM `estoque` WHERE nome = '" + nome + "'";
+            
+            Statement stm = conn.createStatement();
+            stm.execute(consultar);
+        } catch (SQLException ex) {
+            System.out.println("Não conseguiu consultar um produto no BD.");
+        } finally {
+           EstoqueBD.desconectar(conn);
+        }
         
         return null;
     }
@@ -37,7 +47,6 @@ public class ProdutoDAO {
     public static void cadastrarProduto(Rotulo rotulo, int codigo, double valor, boolean receita, String nome, String validade){
         Produto p;
         p = new Produto(rotulo, codigo, valor, receita, nome, validade);
-        produtos.add(p);
         Connection conn = EstoqueBD.conectar();
         try {
             String adicionar = "INSERT INTO estoque (rotulo, codigo, valor, receita, nome, validade) VALUES ('" + p.getRotulo() + "', " + p.getCodigo() + ", " + p.getValor() +", " + p.getReceita() +", '" + p.getNome() +"', '" + p.getValidade() + "')";
@@ -46,9 +55,9 @@ public class ProdutoDAO {
             stm.execute(adicionar);
             System.out.println("Adicionou no BD.");
         } catch (SQLException ex) {
-            System.out.println("Não conseguiu adicionar uma pessoa no BD.");
+            System.out.println("Não conseguiu adicionar um produto no BD.");
         } finally {
-           // EstoqueBD.desconectar(conn);
+           EstoqueBD.desconectar(conn);
         }
     }
     
