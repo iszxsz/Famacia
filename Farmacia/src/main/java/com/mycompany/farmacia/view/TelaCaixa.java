@@ -68,7 +68,7 @@ public class TelaCaixa extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Código", "Quantidade", "Nome", "Rótulo"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
