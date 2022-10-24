@@ -170,6 +170,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="RELAT&#xd3;RIO"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoRelatorioActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

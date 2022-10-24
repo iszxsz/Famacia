@@ -108,6 +108,11 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         botaoRelatorio.setText("RELATÓRIO");
+        botaoRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRelatorioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,8 +154,20 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoNovaVendaActionPerformed
 
     private void botaoEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEstoqueActionPerformed
-        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TelaEstoque().setVisible(true);
+            }
+        });
     }//GEN-LAST:event_botaoEstoqueActionPerformed
+
+    private void botaoRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRelatorioActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TelaRelatorio().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_botaoRelatorioActionPerformed
 
     /**
      * @param args the command line arguments
