@@ -5,12 +5,17 @@
  */
 package com.mycompany.farmacia.view;
 
+import com.mycompany.farmacia.common.PersistenciaException;
+import com.mycompany.farmacia.dao.ProdutoDAO;
+import com.mycompany.farmacia.dto.Rotulo;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 /**
@@ -65,6 +70,13 @@ public class TelaAdicionarProdutoEstoque extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
+        buttonGroup5 = new javax.swing.ButtonGroup();
+        buttonGroup6 = new javax.swing.ButtonGroup();
+        buttonGroup7 = new javax.swing.ButtonGroup();
+        buttonGroup8 = new javax.swing.ButtonGroup();
+        buttonGroup9 = new javax.swing.ButtonGroup();
         botaoSalvarAdicionar = new javax.swing.JButton();
         botaoCancelarAdicionar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -72,10 +84,15 @@ public class TelaAdicionarProdutoEstoque extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         qntTelaAdicionar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        precoTelaAdicionar = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         opcaoSimTelaAdicionar = new javax.swing.JRadioButton();
         opcaoNaoTelaAdicionar = new javax.swing.JRadioButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        rotuloTelaAdicionar = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        validadeTelaAdicionar = new javax.swing.JTextField();
+        precoTelaAdicionar = new javax.swing.JTextField();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -129,40 +146,75 @@ public class TelaAdicionarProdutoEstoque extends javax.swing.JDialog {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Ubuntu", 0, 20)); // NOI18N
+        jLabel5.setText("Validade:");
+
+        rotuloTelaAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rotuloTelaAdicionarActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Ubuntu", 0, 20)); // NOI18N
+        jLabel7.setText("Rótulo:");
+
+        validadeTelaAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                validadeTelaAdicionarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(precoTelaAdicionar))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(80, 80, 80)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(produtoTelaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(182, 182, 182)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(opcaoNaoTelaAdicionar)
+                                        .addComponent(opcaoSimTelaAdicionar)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(precoTelaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(qntTelaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 273, Short.MAX_VALUE)
+                                .addComponent(botaoSalvarAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botaoCancelarAdicionar))))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoSalvarAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botaoCancelarAdicionar))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(produtoTelaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(rotuloTelaAdicionar))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(38, 38, 38)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(opcaoNaoTelaAdicionar)
-                                    .addComponent(opcaoSimTelaAdicionar)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(qntTelaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 62, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel4)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(validadeTelaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botaoCancelarAdicionar, botaoSalvarAdicionar});
@@ -175,24 +227,36 @@ public class TelaAdicionarProdutoEstoque extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(produtoTelaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)
+                        .addComponent(qntTelaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(precoTelaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(qntTelaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(precoTelaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(37, 37, 37)
+                    .addComponent(jLabel5)
+                    .addComponent(validadeTelaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(rotuloTelaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(opcaoSimTelaAdicionar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(opcaoNaoTelaAdicionar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCancelarAdicionar)
                     .addComponent(botaoSalvarAdicionar))
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         getRootPane().setDefaultButton(botaoSalvarAdicionar);
@@ -201,11 +265,31 @@ public class TelaAdicionarProdutoEstoque extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoSalvarAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarAdicionarActionPerformed
-        doClose(RET_OK);
+        //try{
+            boolean receita = false;
+            if(opcaoSimTelaAdicionar.isSelected())
+                receita = true;
+
+            else if(opcaoNaoTelaAdicionar.isSelected())
+               receita = false;
+           
+            ProdutoDAO.cadastrarProduto(new Rotulo(1, rotuloTelaAdicionar.getText()), 1, Double.parseDouble(precoTelaAdicionar.getText()), receita, produtoTelaAdicionar.getText(), validadeTelaAdicionar.getText());
+            
+            doClose(RET_OK);
+            
+       /*} catch (PersistenciaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+       }*/
     }//GEN-LAST:event_botaoSalvarAdicionarActionPerformed
 
     private void botaoCancelarAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarAdicionarActionPerformed
-        doClose(RET_CANCEL);
+        if (JOptionPane.showConfirmDialog(null, 
+                "Certeza que deseja cancelar o cadastro?", "Tem certeza ?", 
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                setVisible(false);}
+        else 
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_botaoCancelarAdicionarActionPerformed
 
     /**
@@ -226,6 +310,14 @@ public class TelaAdicionarProdutoEstoque extends javax.swing.JDialog {
     private void opcaoNaoTelaAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcaoNaoTelaAdicionarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_opcaoNaoTelaAdicionarActionPerformed
+
+    private void rotuloTelaAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotuloTelaAdicionarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rotuloTelaAdicionarActionPerformed
+
+    private void validadeTelaAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validadeTelaAdicionarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_validadeTelaAdicionarActionPerformed
     
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -269,15 +361,27 @@ public class TelaAdicionarProdutoEstoque extends javax.swing.JDialog {
     private javax.swing.JButton botaoSalvarAdicionar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.ButtonGroup buttonGroup6;
+    private javax.swing.ButtonGroup buttonGroup7;
+    private javax.swing.ButtonGroup buttonGroup8;
+    private javax.swing.ButtonGroup buttonGroup9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JRadioButton opcaoNaoTelaAdicionar;
     private javax.swing.JRadioButton opcaoSimTelaAdicionar;
     private javax.swing.JTextField precoTelaAdicionar;
     private javax.swing.JTextField produtoTelaAdicionar;
     private javax.swing.JTextField qntTelaAdicionar;
+    private javax.swing.JTextField rotuloTelaAdicionar;
+    private javax.swing.JTextField validadeTelaAdicionar;
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;
