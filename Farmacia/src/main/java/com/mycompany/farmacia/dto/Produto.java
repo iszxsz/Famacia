@@ -37,8 +37,8 @@ public class Produto {
         this.nome = nome;
     }
 
-    public boolean getRotulo() {
-        return receita;
+    public Rotulo getRotulo() {
+        return rotulo;
     }
 
     public void setReceita(boolean receita) {

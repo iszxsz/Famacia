@@ -24,9 +24,14 @@ public class ProdutoDAO {
         
         try{
             String consultar = "SELECT * FROM `estoque` WHERE nome = '" + nome + "'";
+            ResultSet r = null;
             
             Statement stm = conn.createStatement();
-            stm.execute(consultar);
+            r = stm.executeQuery(consultar);
+            while(r.next()){
+                System.out.println(r.getString("nome"));
+            }
+            r.close();
         } catch (SQLException ex) {
             System.out.println("Não conseguiu consultar um produto no BD.");
         } finally {
@@ -37,9 +42,23 @@ public class ProdutoDAO {
     }
     
     public static Produto consultarPorCodigo(int codigo){
-        for(Produto p: produtos)
-            if(p.getCodigo() == codigo)
-                return p;
+        Connection conn = EstoqueBD.conectar();
+        
+        try{
+            String consultar = "SELECT * FROM `estoque` WHERE codigo = '" + codigo + "'";
+            ResultSet r = null;
+            
+            Statement stm = conn.createStatement();
+            r = stm.executeQuery(consultar);
+            while(r.next()){
+                System.out.println(r.getString("nome"));
+            }
+            r.close();
+        } catch (SQLException ex) {
+            System.out.println("Não conseguiu consultar um produto no BD.");
+        } finally {
+           EstoqueBD.desconectar(conn);
+        }
         
         return null;
     }
@@ -49,7 +68,7 @@ public class ProdutoDAO {
         p = new Produto(rotulo, codigo, valor, receita, nome, validade);
         Connection conn = EstoqueBD.conectar();
         try {
-            String adicionar = "INSERT INTO estoque (rotulo, codigo, valor, receita, nome, validade) VALUES ('" + p.getRotulo() + "', " + p.getCodigo() + ", " + p.getValor() +", " + p.getReceita() +", '" + p.getNome() +"', '" + p.getValidade() + "')";
+            String adicionar = "INSERT INTO estoque (rotulo, codigo, valor, receita, nome, validade) VALUES ('" + p.getRotulo().getNome() + "', " + p.getCodigo() + ", " + p.getValor() +", " + p.getReceita() +", '" + p.getNome() +"', '" + p.getValidade() + "')";
 
             Statement stm = conn.createStatement();
             stm.execute(adicionar);
