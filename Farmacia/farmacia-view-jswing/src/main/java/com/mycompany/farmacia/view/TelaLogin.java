@@ -1,8 +1,10 @@
+package com.mycompany.farmacia.view;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/OkCancelDialog.java to edit this template
  */
-package com.mycompany.farmacia.view;
+
 
 import com.mycompany.farmacia.servico.ManterLogin;
 import java.awt.event.ActionEvent;

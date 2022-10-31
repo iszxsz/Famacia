@@ -1,9 +1,11 @@
 package com.mycompany.farmacia.dao;
 
 import com.mycompany.farmacia.dto.Produto;
+import com.mycompany.farmacia.dao.ProdutoDAO;
 
 public class CaixaDAO {
    public static void adicionarValoresCaixa(double valor){
+       
        //chama o valor armazenado no bd; soma o novo valor como valor anterior com o valor antigo e substitui no bd
        //adiciona data da venda junto com o produto vendido 
    }

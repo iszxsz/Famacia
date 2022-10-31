@@ -1,4 +1,4 @@
-package com.mycompany.farmacia;
+package com.mycompany.farmacia.bancoDeDados;
 
 import com.mycompany.farmacia.bancoDeDados.EstoqueBD;
 import com.mycompany.farmacia.dto.Produto;
