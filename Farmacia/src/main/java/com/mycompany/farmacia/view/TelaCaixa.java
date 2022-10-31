@@ -173,12 +173,7 @@ public class TelaCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaInicial().setVisible(true);
-                setVisible(false);
-            }
-        });
+       setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
