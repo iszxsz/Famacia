@@ -17,33 +17,37 @@ import java.sql.Statement;
  * @author aluno
  */
 public class LoginDAO {
-    public static void verificarLogin(String nome, String senha){
+
+    public static void verificarLogin(String nome, String senha) {
         Connection conn = EstoqueBD.conectar();
-        
-        try{
-            String consultar = "SELECT * FROM `estoque` WHERE nome = '" + nome + "'";
+
+        try {
+            String consultar = "SELECT * FROM `login`";
             ResultSet r = null;
-            
+
             Statement stm = conn.createStatement();
             r = stm.executeQuery(consultar);
-            while(r.next()){
-                if(nome.equals(r.getString("usuario"))){
-                    if(senha.equals(r.getString("senha"))){
+            System.out.println("oi0");
+            while (r.next()) {
+                System.out.println("oi1");
+                if (nome.equals(r.getString("usuario"))) {
+                    if (senha.equals(r.getString("senha"))) {
+                        System.out.println("oi2");
                         java.awt.EventQueue.invokeLater(new Runnable() {
                             public void run() {
-                            new TelaInicial().setVisible(true);
-                        }
+                                new TelaInicial().setVisible(true);
+                            }
                         });
                     }
-                    
-            }}
-            
+
+                }
+            }
+
             r.close();
         } catch (SQLException ex) {
             System.out.println("Não conseguiu consultar um produto no BD.");
         } finally {
-           EstoqueBD.desconectar(conn);
+            EstoqueBD.desconectar(conn);
         }
-    }
     }
 }
