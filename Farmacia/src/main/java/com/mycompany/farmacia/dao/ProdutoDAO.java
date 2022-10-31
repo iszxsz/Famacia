@@ -21,6 +21,7 @@ public class ProdutoDAO {
     
     public static Produto consultarPorNome(String nome){
         Connection conn = EstoqueBD.conectar();
+        Produto aux;
         
         try{
             String consultar = "SELECT * FROM `estoque` WHERE nome = '" + nome + "'";
@@ -29,8 +30,9 @@ public class ProdutoDAO {
             Statement stm = conn.createStatement();
             r = stm.executeQuery(consultar);
             while(r.next()){
-                System.out.println(r.getString("nome"));
+                //produtos.add(new Produto());
             }
+            
             r.close();
         } catch (SQLException ex) {
             System.out.println("Não conseguiu consultar um produto no BD.");
@@ -63,12 +65,12 @@ public class ProdutoDAO {
         return null;
     }
     
-    public static void cadastrarProduto(Rotulo rotulo, int codigo, double valor, boolean receita, String nome, String validade){
+    public static void cadastrarProdutoEstoque(Rotulo rotulo, int codigo, double valor, boolean receita, String nome, String validade){
         Produto p;
         p = new Produto(rotulo, codigo, valor, receita, nome, validade);
         Connection conn = EstoqueBD.conectar();
         try {
-            String adicionar = "INSERT INTO estoque (rotulo, codigo, valor, receita, nome, validade) VALUES ('" + p.getRotulo().getNome() + "', " + p.getCodigo() + ", " + p.getValor() +", " + p.getReceita() +", '" + p.getNome() +"', '" + p.getValidade() + "')";
+            String adicionar = "INSERT INTO estoque (rotulo, codigo, valor, receita, nome, validade) VALUES ('" + p.getRotulo().getCodigo() + "', " + p.getCodigo() + ", " + p.getValor() +", " + p.getReceita() +", '" + p.getNome() +"', '" + p.getValidade() + "')";
 
             Statement stm = conn.createStatement();
             stm.execute(adicionar);
@@ -79,7 +81,6 @@ public class ProdutoDAO {
            EstoqueBD.desconectar(conn);
         }
     }
-    
     
     public static List<Produto> listarProdutos(){
         return produtos;
