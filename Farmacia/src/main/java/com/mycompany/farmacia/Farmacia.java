@@ -9,7 +9,7 @@ public class Farmacia {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaInicial().setVisible(true);
+                    }
+                });
             }
-        });
     }
-}
