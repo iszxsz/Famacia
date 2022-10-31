@@ -1,17 +1,17 @@
 package com.mycompany.farmacia.servico;
 
-import com.mycompany.farmacia.common.PersistenciaException;
+/*import com.mycompany.farmacia.common.PersistenciaException;
 import com.mycompany.farmacia.dao.ProdutoDAO;
 import com.mycompany.farmacia.dto.Rotulo;
 import com.mycompany.farmacia.dto.Produto;
 import com.mycompany.farmacia.dao.RotuloDAO;
-import java.util.List;
+import java.util.List;*/
 
 public class ManterProduto {
-    public static void adicionarProduto(String nomeRotulo, double valor, boolean receita, String nome, String validade) throws PersistenciaException{
+    /*public static void adicionarProduto(String nomeRotulo, double valor, boolean receita, String nome, String validade) throws PersistenciaException{
         List<Rotulo> rotulos = RotuloDAO.listarRotulo();
         List<Produto> produtos = ProdutoDAO.listarProdutos();
-        Rotulo r = RotuloDAO.consultarPorNome(nomeRotulo);
+        Rotulo r = RotuloDAO.aderirRotulo(nomeRotulo);
         int codigo = 1;
         
         if (r == null) {
@@ -42,5 +42,5 @@ public class ManterProduto {
         } else{
             throw new PersistenciaException("Campo valor obrigatório");
         }
-    }
+    }*/
 }
