@@ -19,9 +19,8 @@ public class ProdutoDAO {
     
     private ProdutoDAO(){}
     
-    public static Produto consultarPorNome(String nome){
+    public static Produto[] consultarPorNome(String nome){
         Connection conn = EstoqueBD.conectar();
-        Produto aux;
         
         try{
             String consultar = "SELECT * FROM `estoque` WHERE nome = '" + nome + "'";
@@ -30,7 +29,7 @@ public class ProdutoDAO {
             Statement stm = conn.createStatement();
             r = stm.executeQuery(consultar);
             while(r.next()){
-                //produtos.add(new Produto());
+                produtos.add(new Produto(RotuloDAO.consultarRotuloPorCodigo(r.getInt("rotulo")), r.getInt("codigo"), r.getDouble("valor"), r.getBoolean("receita"), r.getString("nome"), r.getString("validade")));
             }
             
             r.close();

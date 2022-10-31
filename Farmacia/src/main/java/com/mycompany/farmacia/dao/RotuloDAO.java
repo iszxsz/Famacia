@@ -89,6 +89,29 @@ public class RotuloDAO {
         
         return aux;
     }
+    
+    public static Rotulo consultarRotuloPorCodigo(int cod){
+        Connection conn = EstoqueBD.conectar();
+        Rotulo aux = null;
+        
+        try{
+            String consultar = "SELECT * FROM `rotulo` WHERE codigo = '" + cod + "'";
+            ResultSet r = null;
+            
+            Statement stm = conn.createStatement();
+            r = stm.executeQuery(consultar);
+            while(r.next()){
+                aux = new Rotulo(r.getInt("codigo"), r.getString("nome"));
+            }
+            r.close();
+        } catch (SQLException ex) {
+            System.out.println("Não conseguiu consultar um produto no BD.");
+        } finally {
+           EstoqueBD.desconectar(conn);
+        }
+        
+        return aux;
+    }
    
     /*public static void cadastrar (Rotulo r) throws PersistenciaException{
         if(r.getNome().isEmpty())

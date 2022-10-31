@@ -7,7 +7,6 @@ package com.mycompany.farmacia.view;
 
 import com.mycompany.farmacia.dao.ProdutoDAO;
 import com.mycompany.farmacia.dao.RotuloDAO;
-import com.mycompany.farmacia.dto.Rotulo;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
@@ -273,7 +272,7 @@ public class TelaAdicionarProdutoEstoque extends javax.swing.JDialog {
             else if(opcaoNaoTelaAdicionar.isSelected())
                receita = false;
            
-            ProdutoDAO.cadastrarProdutoEstoque(new Rotulo(RotuloDAO.maiorCodigo(), rotuloTelaAdicionar.getText()), 1, Double.parseDouble(precoTelaAdicionar.getText()), receita, produtoTelaAdicionar.getText(), validadeTelaAdicionar.getText());
+            ProdutoDAO.cadastrarProdutoEstoque(RotuloDAO.aderirRotulo(rotuloTelaAdicionar.getText()), 1, Double.parseDouble(precoTelaAdicionar.getText()), receita, produtoTelaAdicionar.getText(), validadeTelaAdicionar.getText());
             
             doClose(RET_OK);
             
