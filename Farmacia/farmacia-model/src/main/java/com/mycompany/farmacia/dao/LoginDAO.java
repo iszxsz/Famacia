@@ -5,8 +5,6 @@
 package com.mycompany.farmacia.dao;
 
 import com.mycompany.farmacia.bancoDeDados.EstoqueBD;
-import com.mycompany.farmacia.dto.Produto;
-import com.mycompany.farmacia.view.TelaInicial;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +16,7 @@ import java.sql.Statement;
  */
 public class LoginDAO {
 
-    public static void verificarLogin(String nome, String senha) {
+    public static int verificarLogin(String nome, String senha) {
         Connection conn = EstoqueBD.conectar();
 
         try {
@@ -27,19 +25,18 @@ public class LoginDAO {
 
             Statement stm = conn.createStatement();
             r = stm.executeQuery(consultar);
-            System.out.println("oi0");
             while (r.next()) {
                 System.out.println("oi1");
                 if (nome.equals(r.getString("usuario"))) {
                     if (senha.equals(r.getString("senha"))) {
-                        System.out.println("oi2");
-                        java.awt.EventQueue.invokeLater(new Runnable() {
-                            public void run() {
-                                new TelaInicial().setVisible(true);
-                            }
-                        });
-                    }
-
+                       return 2; //usuario existe
+                    } else 
+                        return 1; // senha errada porem usuario existe
+                } else if((nome.equals(r.getString("usuario"))) && (r.getString("tipo").equals("gerente"))){
+                    if (senha.equals(r.getString("senha"))) {
+                       return 3; //Acessado pelo gerente
+                    } else 
+                        return 1; //senha errada porem usuario
                 }
             }
 
@@ -48,6 +45,26 @@ public class LoginDAO {
             System.out.println("Não conseguiu consultar um produto no BD.");
         } finally {
             EstoqueBD.desconectar(conn);
+        }
+        
+        return 0;
+    }
+    
+    public static boolean adicionarLogin(String usuario, String senha){
+        Connection conn = EstoqueBD.conectar();
+        try {
+            String adicionar = "INSERT INTO login (usuario, senha) VALUES ('" + usuario + "', " + senha + "')";
+
+            Statement stm = conn.createStatement();
+            stm.execute(adicionar);
+            System.out.println("Adicionou no BD.");
+            return true;
+            
+        } catch (SQLException ex) {
+            System.out.println("Não conseguiu adicionar o login no BD.");
+            return false;
+        } finally {
+           EstoqueBD.desconectar(conn);
         }
     }
 }
