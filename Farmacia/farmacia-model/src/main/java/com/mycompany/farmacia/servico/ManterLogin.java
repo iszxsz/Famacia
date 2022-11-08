@@ -6,7 +6,7 @@ package com.mycompany.farmacia.servico;
 
 import com.mycompany.farmacia.common.NegocioException;
 import com.mycompany.farmacia.dao.LoginDAO;
-import com.mycompany.farmacia.view.TelaInicial;
+//import com.mycompany.farmacia.view.TelaInicial;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 

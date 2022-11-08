@@ -82,18 +82,16 @@ public class ProdutoDAO {
         }
     }
     
-    public static void removerProdutoEstoque(Rotulo rotulo, int codigo, double valor, boolean receita, String nome, String validade){
-        Produto p;
-        p = new Produto(rotulo, codigo, valor, receita, nome, validade);
+    public static void removerProdutoEstoque(Produto p){
         Connection conn = EstoqueBD.conectar();
         try {
-            String adicionar = "INSERT INTO estoque (rotulo, codigo, valor, receita, nome, validade) VALUES ('" + p.getRotulo().getCodigo() + "', " + p.getCodigo() + ", " + p.getValor() +", " + p.getReceita() +", '" + p.getNome() +"', '" + p.getValidade() + "')";
+            String adicionar = "DELETE FROM estoque WHERE codigo=" + p.getCodigo();
 
             Statement stm = conn.createStatement();
             stm.execute(adicionar);
-            System.out.println("Adicionou no BD.");
+            System.out.println("Removeu do BD.");
         } catch (SQLException ex) {
-            System.out.println("Não conseguiu adicionar um produto no BD.");
+            System.out.println("Não conseguiu remover um produto no BD.");
         } finally {
            EstoqueBD.desconectar(conn);
         }
