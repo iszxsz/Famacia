@@ -149,7 +149,7 @@ public class TelaLogin extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-      ManterLogin.verificarLogin(usuarioLogin.getText(), senhaLogin.getText());  
+      //ManterLogin.verificarLogin(usuarioLogin.getText(), senhaLogin.getText());  
     }//GEN-LAST:event_okButtonActionPerformed
 
     /**
