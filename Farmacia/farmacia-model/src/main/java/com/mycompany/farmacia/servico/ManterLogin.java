@@ -39,12 +39,12 @@ public class ManterLogin {
 
     }
     
-    public static boolean adicionarLogin(String usuario, String senha){
+    public static boolean adicionarLogin(String usuario, String senha) {
         boolean retorno;
         retorno = LoginDAO.adicionarLogin(usuario, senha);
-        return retorno; 
-//false se nao for possivel
-//true se conseguiu cadastrar
-        }
+        return retorno;
+        //false se nao for possivel
+        //true se conseguiu cadastrar
+    }
     
 }

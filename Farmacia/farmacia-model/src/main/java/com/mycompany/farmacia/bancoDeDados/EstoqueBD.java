@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class EstoqueBD {
 
-   public static Connection conectar() {
+    public static Connection conectar() {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
