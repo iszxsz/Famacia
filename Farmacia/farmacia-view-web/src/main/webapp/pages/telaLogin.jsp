@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" import="com.mycompany.farmacia.*"%>
 <!DOCTYPE html>
 <html>
 
@@ -19,13 +20,13 @@
     <div class="grid">
         <form class="form login" method="get" action="menu.html">
             <div class="form__field">
-                <label for="login__username"><svg class="icon">
+                <label for="login__username" name="usuario"><svg class="icon">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
           </svg><span class="hidden">Usuário</span></label>
                 <input id="login__username" type="text" name="username" class="form__input" placeholder="Usuário" required="">
             </div>
             <div class="form__field">
-                <label for="login__password"><svg class="icon">
+                <label for="login__password" name="senha"><svg class="icon">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use>
           </svg><span class="hidden">Senha</span></label>
                 <input id="login__password" type="password" name="password" class="form__input" placeholder="Senha" required="">
@@ -59,7 +60,12 @@
 
         gtag('config', 'UA-80520768-2');
     </script>
+    <%
+        String usuario = request.getParameter("usuario");
+        String senha = request.getParameter("senha");
+        ManterLogin.verificarLogin(usuario,senha);
 
+    %>
 </body>
 
 </html>

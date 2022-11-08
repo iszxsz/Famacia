@@ -27,29 +27,30 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <span class="close">&times;</span>
-                    <h2>Fazer logout</h2>
+                    <h2 id="titulomodal">Fazer logout</h2>
                 </div>
                 <div class="modal-body">
                     <p>Deseja mesmo sair da sua conta?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button">Sair</button>
-                    <button type="button">Cancelar</button>
+                    <button type="button" onclick="window.location.href='telaLogin.jsp'">Sair</button>
+                     <button type="button" onclick="document.getElementById('myModal').style.display='none'" class="cancelbtn">Cancelar</button>
                 </div>
             </div>
 
         </div>
-        <div class="container ">
+        <div class="container "  onclick="window.location.href='telaCaixa.jsp'">
             <p>
                 <b>Nova venda</b>
+                
             </p>
         </div>
-        <div class="container ">
+        <div class="container " onclick="window.location.href='telaEstoque.jsp'">
             <p>
                 <b>Estoque</b>
             </p>
         </div>
-        <div class="container ">
+        <div class="container " onclick="window.location.href='telaRelatorio.jsp'">
             <p>
                 <b>Relatório</b>
             </p>
