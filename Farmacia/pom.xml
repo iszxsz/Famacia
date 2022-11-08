@@ -15,6 +15,7 @@
             
     <module>farmacia-model</module>
     <module>farmacia-view-jswing</module>
+    <module>farmacia-view-web</module>
   </modules>
       
   <properties>
