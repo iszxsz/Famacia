@@ -1,46 +1,28 @@
 package com.mycompany.farmacia.servico;
 
-/*import com.mycompany.farmacia.common.PersistenciaException;
+import com.mycompany.farmacia.Generics;
+import com.mycompany.farmacia.common.NegocioException;
 import com.mycompany.farmacia.dao.ProdutoDAO;
-import com.mycompany.farmacia.dto.Rotulo;
-import com.mycompany.farmacia.dto.Produto;
 import com.mycompany.farmacia.dao.RotuloDAO;
-import java.util.List;*/
 
 public class ManterProduto {
-    /*public static void adicionarProduto(String nomeRotulo, double valor, boolean receita, String nome, String validade) throws PersistenciaException{
-        List<Rotulo> rotulos = RotuloDAO.listarRotulo();
-        List<Produto> produtos = ProdutoDAO.listarProdutos();
-        Rotulo r = RotuloDAO.aderirRotulo(nomeRotulo);
-        int codigo = 1;
-        
-        if (r == null) {
-            r = new Rotulo(0, nomeRotulo);
-
-            for (Rotulo rt : rotulos) {
-                if (r.getCodigo() <= rt.getCodigo()) {
-                    r.setCodigo(rt.getCodigo() + 1);
-                }
-            }
-
-            RotuloDAO.cadastrar(r);
-        }
-        
-        for(Produto pd: produtos)
-            if(codigo <= pd.getCodigo())
-                codigo = pd.getCodigo() + 1;
-                    
-        if(valor != 0){
-            if(!nome.isEmpty()){
-                if(!validade.isEmpty()){
-                } else{
-                    throw new PersistenciaException("Campo validade obrigatório");
-                }
-            } else{
-                throw new PersistenciaException("Campo nome obrigatório");
-            }
+    public static void adicionarProduto(String nomeRotulo, double valor, boolean receita, String nome, String validade) throws NegocioException{
+        if((nomeRotulo.isEmpty()) || (valor == 0) || (validade.isEmpty()) || (nome.isEmpty())){
+            throw new NegocioException("Preencha todos os campos!");
         } else{
-            throw new PersistenciaException("Campo valor obrigatório");
+            ProdutoDAO.cadastrarProdutoEstoque(RotuloDAO.aderirRotulo(nomeRotulo), ProdutoDAO.aderirCodigo(), valor, receita, nome, validade);
         }
-    }*/
+    }
+    
+    public static void consultarProduto(String info) throws NegocioException{
+        if (info.isEmpty()) {
+            throw new NegocioException("Preencha o campo de pesquisa!");
+        } else {
+            if (Generics.isInteger(info)) {
+                ProdutoDAO.consultarPorCodigo(Integer.parseInt(info));
+            } else {
+                ProdutoDAO.consultarPorNome(info);
+            }
+        }
+    }
 }

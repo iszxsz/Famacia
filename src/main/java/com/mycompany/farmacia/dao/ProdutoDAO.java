@@ -84,7 +84,7 @@ public class ProdutoDAO {
     public static void removerProdutoEstoque(Produto p){
         Connection conn = EstoqueBD.conectar();
         try {
-            String adicionar = "DELETE FROM estoque WHERE codigo=" + p.getCodigo();
+            String adicionar = "DELETE FROM estoque WHERE codigo = " + p.getCodigo();
 
             Statement stm = conn.createStatement();
             stm.execute(adicionar);
@@ -93,6 +93,28 @@ public class ProdutoDAO {
             System.out.println("Não conseguiu remover um produto no BD.");
         } finally {
            EstoqueBD.desconectar(conn);
+        }
+    }
+    
+    public static int aderirCodigo(){
+        int maior = 0;
+        Connection conn = EstoqueBD.conectar();
+        try{
+            String consultar = "SELECT * FROM `estoque`";
+            ResultSet r = null;
+            
+            Statement stm = conn.createStatement();
+            r = stm.executeQuery(consultar);
+            while(r.next()){
+                if(r.getInt("codigo") > maior)
+                    maior = r.getInt("codigo");
+            }
+            r.close();
+        } catch (SQLException ex) {
+            System.out.println("Não conseguiu consultar um produto no BD.");
+        } finally {
+           EstoqueBD.desconectar(conn);
+           return maior + 1;
         }
     }
     
