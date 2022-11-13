@@ -60,7 +60,7 @@ public class LoginDAO {
     public static boolean adicionarLogin(String usuario, String senha){
         Connection conn = EstoqueBD.conectar();
         try {
-            String adicionar = "INSERT INTO login (usuario, senha) VALUES ('" + usuario + "', " + senha + "')";
+            String adicionar = "INSERT INTO `login` (usuario, senha) VALUES ('" + usuario + "', " + senha + "')";
 
             Statement stm = conn.createStatement();
             stm.execute(adicionar);

@@ -29,7 +29,8 @@ public class RotuloDAO {
         
         try {
             if (rotulo == null) {
-                String consultar = "INSERT INTO rotulo (codigo, nome) VALUES ("+ maiorCodigo() +", '"+ nome +"')";
+                rotulo = new Rotulo(maiorCodigo(), nome);
+                String consultar = "INSERT INTO `rotulo` (codigo, nome) VALUES ("+ rotulo.getCodigo() +", '"+ rotulo.getNome() +"')";
                 ResultSet r = null;
                 Statement stm = conn.createStatement();
                 stm.executeQuery(consultar);
@@ -54,6 +55,7 @@ public class RotuloDAO {
             Statement stm = conn.createStatement();
             r = stm.executeQuery(consultar);
             while(r.next()){
+                System.out.println(r.getString("nome"));
                 if(r.getInt("codigo") > aux)
                     aux = r.getInt("codigo") + 1;
             }

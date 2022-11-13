@@ -4,7 +4,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.farmacia.view;
+package com.mycompany.farmacia.viewSwing;
 
 import com.mycompany.farmacia.common.NegocioException;
 import com.mycompany.farmacia.common.PersistenciaException;
@@ -158,7 +158,7 @@ public class AdicionarVendedor extends javax.swing.JDialog {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         try{
-            ManterLogin.adicionarLogin(nomeUsuario.getText(), senhaUsuario.getText());
+            ManterLogin.adicionarLogin("" + nomeUsuario.getText(), "" + senhaUsuario.getText());
             JOptionPane.showMessageDialog(null, "Usuário adicionado");
         } catch (PersistenciaException | NegocioException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);

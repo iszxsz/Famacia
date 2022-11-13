@@ -5,7 +5,6 @@
  */
 package com.mycompany.farmacia.viewSwing;
 
-import com.mycompany.farmacia.view.AdicionarVendedor;
 import com.mycompany.farmacia.view.TelaCaixa;
 import com.mycompany.farmacia.view.TelaRelatorio;
 

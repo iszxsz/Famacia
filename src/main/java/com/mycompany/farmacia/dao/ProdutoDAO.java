@@ -69,7 +69,7 @@ public class ProdutoDAO {
         p = new Produto(rotulo, codigo, valor, receita, nome, validade);
         Connection conn = EstoqueBD.conectar();
         try {
-            String adicionar = "INSERT INTO `estoque` (rotulo, codigo, valor, receita, nome, validade) VALUES ('" + p.getRotulo().getCodigo() + "', " + p.getCodigo() + ", " + p.getValor() +", " + p.getReceita() +", '" + p.getNome() +"', '" + p.getValidade() + "')";
+            String adicionar = "INSERT INTO `estoque` (rotulo, codigo, valor, receita, nome, validade) VALUES ('" + rotulo.getCodigo() + "', " + p.getCodigo() + ", " + p.getValor() +", " + p.getReceita() +", '" + p.getNome() +"', '" + p.getValidade() + "')";
 
             Statement stm = conn.createStatement();
             stm.execute(adicionar);

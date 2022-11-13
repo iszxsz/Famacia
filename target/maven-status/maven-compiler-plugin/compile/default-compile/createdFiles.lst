@@ -3,7 +3,6 @@ com\mycompany\farmacia\view\TelaCaixa.class
 com\mycompany\farmacia\dto\Rotulo.class
 com\mycompany\farmacia\viewSwing\TelaAdicionarProdutoEstoque$3.class
 com\mycompany\farmacia\common\PersistenciaException.class
-com\mycompany\farmacia\view\AdicionarVendedor$5.class
 com\mycompany\farmacia\viewSwing\TelaEstoque.class
 com\mycompany\farmacia\viewSwing\TelaInicialGerente$6.class
 com\mycompany\farmacia\view\TelaLogin$1.class
@@ -12,15 +11,16 @@ com\mycompany\farmacia\viewSwing\TelaAdicionarProdutoEstoque$7.class
 com\mycompany\farmacia\viewSwing\TelaInicialGerente$3.class
 com\mycompany\farmacia\servico\ManterRelatorio.class
 com\mycompany\farmacia\viewSwing\TelaInicialGerente.class
-com\mycompany\farmacia\view\AdicionarVendedor$2.class
+com\mycompany\farmacia\viewSwing\AdicionarVendedor.class
+com\mycompany\farmacia\viewSwing\AdicionarVendedor$2.class
 com\mycompany\farmacia\dao\CaixaDAO.class
 com\mycompany\farmacia\servico\ManterLogin.class
 com\mycompany\farmacia\view\TelaCaixa$2.class
 com\mycompany\farmacia\viewSwing\TelaEstoque$3$1.class
 com\mycompany\farmacia\Farmacia$1.class
 com\mycompany\farmacia\viewSwing\TelaInicialGerente$5.class
+com\mycompany\farmacia\viewSwing\AdicionarVendedor$3.class
 com\mycompany\farmacia\viewSwing\TelaAdicionarProdutoEstoque$9.class
-com\mycompany\farmacia\view\AdicionarVendedor$1.class
 com\mycompany\farmacia\bd\EstoqueBD.class
 com\mycompany\farmacia\dao\RotuloDAO.class
 com\mycompany\farmacia\viewSwing\TelaEstoque$1.class
@@ -32,7 +32,6 @@ com\mycompany\farmacia\view\TelaLogin$7.class
 com\mycompany\farmacia\dao\ProdutoDAO.class
 com\mycompany\farmacia\dao\RelatorioDAO.class
 com\mycompany\farmacia\servico\ManterRotulo.class
-com\mycompany\farmacia\view\AdicionarVendedor.class
 com\mycompany\farmacia\viewSwing\TelaInicial$1.class
 com\mycompany\farmacia\bd\RelatorioBD.class
 com\mycompany\farmacia\viewSwing\TelaInicial$4.class
@@ -40,6 +39,7 @@ com\mycompany\farmacia\viewSwing\TelaAdicionarProdutoEstoque$6.class
 com\mycompany\farmacia\viewSwing\TelaInicialGerente$8$1.class
 com\mycompany\farmacia\viewSwing\TelaAdicionarProdutoEstoque.class
 com\mycompany\farmacia\Farmacia$1$1.class
+com\mycompany\farmacia\viewSwing\AdicionarVendedor$4.class
 com\mycompany\farmacia\servico\ManterCaixa.class
 com\mycompany\farmacia\viewSwing\TelaAdicionarProdutoEstoque$5.class
 com\mycompany\farmacia\viewSwing\TelaAdicionarProdutoEstoque$8.class
@@ -48,7 +48,6 @@ com\mycompany\farmacia\viewSwing\TelaInicial$6.class
 com\mycompany\farmacia\view\TelaRelatorio$1.class
 com\mycompany\farmacia\viewSwing\TelaInicial$2.class
 com\mycompany\farmacia\viewSwing\TelaInicialGerente$8.class
-com\mycompany\farmacia\view\AdicionarVendedor$4.class
 com\mycompany\farmacia\view\TelaLogin$6.class
 com\mycompany\farmacia\viewSwing\TelaAdicionarProdutoEstoque$2.class
 com\mycompany\farmacia\common\NegocioException.class
@@ -60,12 +59,13 @@ com\mycompany\farmacia\dao\LoginDAO.class
 com\mycompany\farmacia\view\TelaRelatorio.class
 com\mycompany\farmacia\view\TelaRelatorio$2.class
 com\mycompany\farmacia\viewSwing\TelaInicial$3.class
+com\mycompany\farmacia\viewSwing\AdicionarVendedor$5.class
 com\mycompany\farmacia\viewSwing\TelaInicialGerente$7.class
 com\mycompany\farmacia\Farmacia.class
 com\mycompany\farmacia\viewSwing\TelaAdicionarProdutoEstoque$4.class
 com\mycompany\farmacia\dto\Caixa.class
 com\mycompany\farmacia\servico\ManterProduto.class
-com\mycompany\farmacia\view\AdicionarVendedor$3.class
+com\mycompany\farmacia\viewSwing\AdicionarVendedor$1.class
 com\mycompany\farmacia\viewSwing\TelaEstoque$3.class
 com\mycompany\farmacia\view\TelaLogin$8.class
 com\mycompany\farmacia\view\TelaLogin.class
