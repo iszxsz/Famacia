@@ -275,7 +275,7 @@ public class TelaAdicionarProdutoEstoque extends javax.swing.JDialog {
             
             Rotulo r = RotuloDAO.aderirRotulo(rotuloTelaAdicionar.getText());
            
-            ProdutoDAO.cadastrarProdutoEstoque(r, 1, Double.parseDouble(precoTelaAdicionar.getText()), receita, produtoTelaAdicionar.getText(), validadeTelaAdicionar.getText());
+            ProdutoDAO.cadastrarProdutoEstoque(r, ProdutoDAO.aderirCodigo(), Double.parseDouble(precoTelaAdicionar.getText()), receita, produtoTelaAdicionar.getText(), validadeTelaAdicionar.getText());
             
             doClose(RET_OK);
             

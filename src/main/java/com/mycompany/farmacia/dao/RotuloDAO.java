@@ -31,12 +31,11 @@ public class RotuloDAO {
             if (rotulo == null) {
                 rotulo = new Rotulo(maiorCodigo(), nome);
                 String consultar = "INSERT INTO `rotulo` (codigo, nome) VALUES ("+ rotulo.getCodigo() +", '"+ rotulo.getNome() +"')";
-                ResultSet r = null;
                 Statement stm = conn.createStatement();
-                stm.executeQuery(consultar);
+                stm.execute(consultar);
             }
         } catch (SQLException ex) {
-            System.out.println("Não conseguiu adicionar rotulo no BD.");
+            System.out.println("\n" + ex.getCause() + "\n" + ex.getMessage() + "\n");
         } finally {
             EstoqueBD.desconectar(conn);
         }
