@@ -5,10 +5,7 @@
 package com.mycompany.farmacia.dao;
 
 import com.mycompany.farmacia.bd.EstoqueBD;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  *
@@ -60,14 +57,14 @@ public class LoginDAO {
     public static boolean adicionarLogin(String usuario, String senha){
         Connection conn = EstoqueBD.conectar();
         try {
-            String adicionar = "INSERT INTO `login` (usuario, senha) VALUES ('" + usuario + "', " + senha + "')";
+            String adicionar = "INSERT INTO `login` (usuario, senha) VALUES ('" + usuario + "', '" + senha + "')";
 
             Statement stm = conn.createStatement();
             stm.execute(adicionar);
             System.out.println("Adicionou no BD.");
             return true;
         } catch (SQLException ex) {
-            System.out.println("Não conseguiu adicionar o login no BD.");
+            System.out.println(ex.getErrorCode() + "\n \n" + ex.getSQLState() + "\n \n" + ex.getMessage());
             return false;
         } finally {
            EstoqueBD.desconectar(conn);

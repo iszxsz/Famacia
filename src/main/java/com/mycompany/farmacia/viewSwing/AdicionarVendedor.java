@@ -162,6 +162,8 @@ public class AdicionarVendedor extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Usuário adicionado");
         } catch (PersistenciaException | NegocioException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally{
+            doClose(RET_CANCEL);
         }
     }//GEN-LAST:event_okButtonActionPerformed
 
