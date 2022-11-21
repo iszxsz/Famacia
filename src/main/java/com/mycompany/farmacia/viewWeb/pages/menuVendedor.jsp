@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" import="com.mycompany.farmacia.*"%>
 <!DOCTYPE html>
 <html>
 
@@ -33,16 +34,16 @@
                     <p>Deseja mesmo sair da sua conta?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" onclick="window.location.href='telaLogin.jsp'">Sair</button>
-                     <button type="button" onclick="document.getElementById('myModal').style.display='none'" class="cancelbtn">Cancelar</button>
+                    <button type="button" class="butaco" onclick="window.location.href='telaLogin.jsp'">Sair</button>
+                    <button type="button" class="butaco2" onclick="document.getElementById('myModal').style.display='none'" class="cancelbtn">Cancelar</button>
                 </div>
             </div>
 
         </div>
-        <div class="container "  onclick="window.location.href='telaCaixa.jsp'">
+        <div class="container " onclick="window.location.href='telaCaixa.jsp'">
             <p>
                 <b>Nova venda</b>
-                
+
             </p>
         </div>
         <div class="container " onclick="window.location.href='telaEstoque.jsp'">
@@ -64,6 +65,7 @@
             Por Arthur Ribeiro, Isabela Ferreira, Letícia Leonardo, Washington Wagner - INF2A
         </p>
     </bottom>
+
     <script>
         // Get the modal
         var modal = document.getElementById("myModal");
@@ -92,5 +94,3 @@
         }
     </script>
 </body>
-
-</html>

@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap%27');
+html {
+    height: 100vh;
+    overflow: hidden;
+}
+
+nav {
+    background-color: #004aad;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    overflow: hidden;
+    margin: 0;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+#titulo {
+    text-align: center;
+    color: white;
+    font-size: 36px;
+    padding-top: 25px;
+    margin: 0;
+    display: block;
+}
+
+#seta {
+    position: absolute;
+    top: 20px;
+    left: 15px;
+}
+
+#seta :hover {
+    fill: white;
+}
+
+.botoues {
+    margin: 30px;
+}
+
+.gigante {
+    display: flex;
+    justify-content: space-between;
+}
+
+.total {
+    display: flex;
+    justify-content: center;
+}
+
+.total h1 {
+    background-color: red;
+    color: white;
+    border-radius: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.gigante h1 {
+    margin-left: 20px;
+    margin-top: 20px;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.nota {
+    margin-right: 100px;
+}
+
+#primeiro {
+    margin-left: 20px;
+}
+
+#segundo {
+    margin-left: 27px;
+}
+
+.nota button {
+    margin-top: 700px;
+}
