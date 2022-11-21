@@ -5,8 +5,13 @@
  */
 package com.mycompany.farmacia.viewSwing;
 
+import com.mycompany.farmacia.dao.ProdutoDAO;
+import com.mycompany.farmacia.dto.Produto;
+import com.mycompany.farmacia.servico.ManterProduto;
 import com.mycompany.farmacia.viewSwing.TelaAdicionarProdutoEstoque;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,8 +22,10 @@ public class TelaEstoque extends javax.swing.JFrame {
     /**
      * Creates new form TelaEstoque
      */
-    public TelaEstoque() {
+     public TelaEstoque() {
+        setLocationRelativeTo(null);
         initComponents();
+        preencherTabela();
     }
 
     /**
@@ -34,7 +41,7 @@ public class TelaEstoque extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         botaoVoltarMenu = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         botaoAdicionarProduto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,18 +81,15 @@ public class TelaEstoque extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Código", "Quantidade", "Nome", "Receita", "Valor"
+                "Código", "Nome", "Receita", "Valor"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabela);
 
         botaoAdicionarProduto.setBackground(new java.awt.Color(219, 8, 0));
         botaoAdicionarProduto.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
@@ -177,6 +181,28 @@ public class TelaEstoque extends javax.swing.JFrame {
             }
         });
     }
+        private static DefaultTableModel model;
+        public void preencherTabela(){
+        
+        model = (DefaultTableModel) tabela.getModel();
+      
+        model.setNumRows(0);
+        Object colunas[] = new Object[5];
+        List<Produto> p = ManterProduto.listarProduto();
+        for(Produto produto: p){
+            model.addRow(new Object[] {produto.getCodigo() , produto.getNome(), produto.getReceita(), produto.getValor()});
+            /*System.out.println("a");
+            for(Contato contato: c){
+                colunas[0] = contato.getNome();
+                colunas[1] = contato.getTelefone();
+                colunas[2] = contato.getEmail();
+                colunas[3] = contato.getEndereco();
+                colunas[4] = contato.getDataNascimento();
+                model.addRow(colunas);
+        }*/
+
+    }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdicionarProduto;
@@ -184,6 +210,6 @@ public class TelaEstoque extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }

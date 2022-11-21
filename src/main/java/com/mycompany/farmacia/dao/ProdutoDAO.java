@@ -19,8 +19,32 @@ public class ProdutoDAO {
     
     private ProdutoDAO(){}
     
-    public static Produto[] consultarPorNome(String nome){
+    public static void consultarBD(){
         Connection conn = EstoqueBD.conectar();
+        produtos.clear();
+        
+        try{
+            String consultar = "SELECT * FROM `estoque`";
+            ResultSet r = null;
+            
+            Statement stm = conn.createStatement();
+            r = stm.executeQuery(consultar);
+            while(r.next()){
+                produtos.add(new Produto(RotuloDAO.consultarRotuloPorCodigo(r.getInt("rotulo")), r.getInt("codigo"), r.getDouble("valor"), r.getBoolean("receita"), r.getString("nome"), r.getString("validade")));
+            }
+            
+            r.close();
+        } catch (SQLException ex) {
+            System.out.println("Não conseguiu consultar um produto no BD.");
+        } finally {
+           EstoqueBD.desconectar(conn);
+        }
+        
+    }
+    
+    public static void consultarPorNome(String nome){
+        Connection conn = EstoqueBD.conectar();
+        produtos.clear();
         
         try{
             String consultar = "SELECT * FROM `estoque` WHERE nome = '" + nome + "'";
@@ -39,11 +63,11 @@ public class ProdutoDAO {
            EstoqueBD.desconectar(conn);
         }
         
-        return null;
     }
     
-    public static Produto consultarPorCodigo(int codigo){
+    public static void consultarPorCodigo(int codigo){
         Connection conn = EstoqueBD.conectar();
+        produtos.clear();
         
         try{
             String consultar = "SELECT * FROM `estoque` WHERE codigo = '" + codigo + "'";
@@ -61,7 +85,6 @@ public class ProdutoDAO {
            EstoqueBD.desconectar(conn);
         }
         
-        return null;
     }
     
     public static void cadastrarProdutoEstoque(Rotulo rotulo, int codigo, double valor, boolean receita, String nome, String validade){
@@ -118,7 +141,7 @@ public class ProdutoDAO {
         }
     }
     
-    public static List<Produto> listarProdutos(){
+    public static List<Produto> listarProdutos(){    
         return produtos;
     }
 }
