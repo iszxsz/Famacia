@@ -1,4 +1,4 @@
-package com.mycompany.farmacia.bancoDeDados;
+package com.mycompany.farmacia.bd;
 
 import java.sql.*;
 
@@ -8,7 +8,7 @@ public class EstoqueBD {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/farmaciagrupo4", "drogaspoint", "cefet123");
+            conn = DriverManager.getConnection("jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint", "admin", "cefet123");
             System.out.println("Conectou no banco de dados.");
         } catch (SQLException ex) {
             System.out.println("Erro: Não conseguiu conectar no BD.");

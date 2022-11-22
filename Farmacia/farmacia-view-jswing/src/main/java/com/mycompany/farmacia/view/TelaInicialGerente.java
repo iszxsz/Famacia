@@ -5,6 +5,9 @@
  */
 package com.mycompany.farmacia.view;
 
+import com.mycompany.farmacia.view.TelaCaixa;
+import com.mycompany.farmacia.view.TelaRelatorio;
+
 /**
  *
  * @author isabela

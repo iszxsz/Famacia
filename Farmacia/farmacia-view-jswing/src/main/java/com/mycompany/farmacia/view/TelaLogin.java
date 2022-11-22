@@ -6,7 +6,10 @@ package com.mycompany.farmacia.view;
  */
 
 
+import com.mycompany.farmacia.view.TelaInicial;
+import com.mycompany.farmacia.common.NegocioException;
 import com.mycompany.farmacia.servico.ManterLogin;
+import com.mycompany.farmacia.view.TelaInicialGerente;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
@@ -109,11 +112,11 @@ public class TelaLogin extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(221, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(okButton)
-                .addGap(18, 18, 18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -123,7 +126,7 @@ public class TelaLogin extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(usuarioLogin)
                     .addComponent(senhaLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +152,25 @@ public class TelaLogin extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-      //ManterLogin.verificarLogin(usuarioLogin.getText(), senhaLogin.getText());  
+        try {
+            if (!ManterLogin.verificarLogin(usuarioLogin.getText(), senhaLogin.getText())) {
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        new TelaInicial().setVisible(true);
+                    }
+                });
+            } else{
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        new TelaInicialGerente().setVisible(true);
+                    }
+                });
+            }
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        doClose(RET_CANCEL);
     }//GEN-LAST:event_okButtonActionPerformed
 
     /**

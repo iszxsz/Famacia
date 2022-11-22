@@ -5,10 +5,10 @@
  */
 package com.mycompany.farmacia.view;
 
-/**
- *
- * @author isabela
- */
+import com.mycompany.farmacia.view.TelaCaixa;
+import com.mycompany.farmacia.view.TelaEstoque;
+import com.mycompany.farmacia.view.TelaRelatorio;
+
 public class TelaInicial extends javax.swing.JFrame {
 
     /**

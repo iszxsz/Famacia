@@ -1,4 +1,4 @@
-package com.mycompany.farmacia.bancoDeDados;
+package com.mycompany.farmacia.bd;
 
 import java.sql.*;
 

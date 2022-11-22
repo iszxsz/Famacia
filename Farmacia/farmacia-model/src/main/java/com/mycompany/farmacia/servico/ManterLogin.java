@@ -5,10 +5,9 @@
 package com.mycompany.farmacia.servico;
 
 import com.mycompany.farmacia.common.NegocioException;
+import com.mycompany.farmacia.common.PersistenciaException;
 import com.mycompany.farmacia.dao.LoginDAO;
 //import com.mycompany.farmacia.view.TelaInicial;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,35 +15,31 @@ import javax.swing.JOptionPane;
  */
 public class ManterLogin {
 
-    public ManterLogin() {
-    }
+    public ManterLogin(){}
 
     public static boolean verificarLogin(String usuario, String senha) throws NegocioException {
         if (usuario.isEmpty() || senha.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
-        } else {
-            int flag = LoginDAO.verificarLogin(usuario, senha);
-            switch (flag) {
-                case 0:
-                    throw new NegocioException(1, "Usuario não cadastrado");
-                case 1:
-                    throw new NegocioException(2, "Senha incorreta");
-                case 2:
-                    return false;
-            }
-
+            throw new NegocioException("Preencha todos os campos!");
         }
-        
+        int flag = LoginDAO.verificarLogin(usuario, senha);
+        switch (flag) {
+            case 0:
+                throw new NegocioException("Usuario não cadastrado");
+            case 1:
+                throw new NegocioException("Senha incorreta");
+            case 2:
+                return false;
+        }
         return true;
-
     }
     
-    public static boolean adicionarLogin(String usuario, String senha) {
-        boolean retorno;
-        retorno = LoginDAO.adicionarLogin(usuario, senha);
-        return retorno;
-        //false se nao for possivel
-        //true se conseguiu cadastrar
+    public static void adicionarLogin(String usuario, String senha) throws NegocioException, PersistenciaException  {
+        if (usuario.isEmpty() || senha.isEmpty()) {
+            throw new NegocioException("Preencha todos os campos!");
+        }
+        if (!LoginDAO.adicionarLogin(usuario, senha)){
+            throw new PersistenciaException("Não foi possivel cadastrar o funcionario.");
+        }
     }
     
 }

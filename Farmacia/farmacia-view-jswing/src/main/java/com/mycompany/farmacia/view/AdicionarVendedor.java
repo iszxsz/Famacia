@@ -6,6 +6,8 @@
  */
 package com.mycompany.farmacia.view;
 
+import com.mycompany.farmacia.common.NegocioException;
+import com.mycompany.farmacia.common.PersistenciaException;
 import com.mycompany.farmacia.servico.ManterLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -155,15 +157,14 @@ public class AdicionarVendedor extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        if (nomeUsuario.getText().isEmpty() || senhaUsuario.getText().isEmpty()) 
-                     JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
-        else {
-            if (ManterLogin.adicionarLogin(nomeUsuario.getText(), senhaUsuario.getText()) == true)
+        try{
+            ManterLogin.adicionarLogin("" + nomeUsuario.getText(), "" + senhaUsuario.getText());
             JOptionPane.showMessageDialog(null, "Usuário adicionado");
-        else 
-            JOptionPane.showMessageDialog(null, "Não foi possível adicionar o vendedor");
+        } catch (PersistenciaException | NegocioException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally{
+            doClose(RET_CANCEL);
         }
-        
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

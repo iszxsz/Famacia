@@ -1,6 +1,6 @@
 package com.mycompany.farmacia.dao;
 
-import com.mycompany.farmacia.bancoDeDados.EstoqueBD;
+import com.mycompany.farmacia.bd.EstoqueBD;
 import com.mycompany.farmacia.dto.Produto;
 import java.sql.Connection;
 import java.sql.SQLException;

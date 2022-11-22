@@ -18,7 +18,7 @@
 
 <body class="align">
     <div class="grid">
-        <form class="form login" method="get" action="menu.html">
+        <form class="form login" method="get" action="menuVendedor.jsp">
             <div class="form__field">
                 <label for="login__username" name="usuario"><svg class="icon">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>

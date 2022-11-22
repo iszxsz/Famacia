@@ -1,7 +1,7 @@
 package com.mycompany.farmacia.dao;
 
 import java.util.Date;
-import com.mycompany.farmacia.bancoDeDados.EstoqueBD;
+import com.mycompany.farmacia.bd.EstoqueBD;
 import com.mycompany.farmacia.dto.Produto;
 import com.mycompany.farmacia.dto.Rotulo;
 import java.sql.Connection;

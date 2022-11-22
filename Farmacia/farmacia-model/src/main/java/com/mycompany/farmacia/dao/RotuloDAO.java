@@ -1,7 +1,6 @@
 package com.mycompany.farmacia.dao;
 
-import com.mycompany.farmacia.bancoDeDados.EstoqueBD;
-import com.mycompany.farmacia.bancoDeDados.EstoqueBD;
+import com.mycompany.farmacia.bd.EstoqueBD;
 import com.mycompany.farmacia.common.PersistenciaException;
 import com.mycompany.farmacia.dto.Produto;
 import com.mycompany.farmacia.dto.Rotulo;
@@ -30,13 +29,13 @@ public class RotuloDAO {
         
         try {
             if (rotulo == null) {
-                String consultar = "INSERT INTO rotulo (codigo, nome) VALUES ("+ maiorCodigo() +", '"+ nome +"')";
-                ResultSet r = null;
+                rotulo = new Rotulo(maiorCodigo(), nome);
+                String consultar = "INSERT INTO `rotulo` (codigo, nome) VALUES ("+ rotulo.getCodigo() +", '"+ rotulo.getNome() +"')";
                 Statement stm = conn.createStatement();
-                stm.executeQuery(consultar);
+                stm.execute(consultar);
             }
         } catch (SQLException ex) {
-            System.out.println("Não conseguiu consultar um produto no BD.");
+            System.out.println("\n" + ex.getCause() + "\n" + ex.getMessage() + "\n");
         } finally {
             EstoqueBD.desconectar(conn);
         }
@@ -55,6 +54,7 @@ public class RotuloDAO {
             Statement stm = conn.createStatement();
             r = stm.executeQuery(consultar);
             while(r.next()){
+                System.out.println(r.getString("nome"));
                 if(r.getInt("codigo") > aux)
                     aux = r.getInt("codigo") + 1;
             }
