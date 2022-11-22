@@ -50,7 +50,7 @@
   </svg>
     <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-80520768-2" type="text/javascript"></script>
-    <script type="text/javascript">
+    <script>
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
