@@ -76,7 +76,7 @@ public class ProdutoDAO {
             Statement stm = conn.createStatement();
             r = stm.executeQuery(consultar);
             while(r.next()){
-                System.out.println(r.getString("nome"));
+                produtos.add(new Produto(RotuloDAO.consultarRotuloPorCodigo(r.getInt("rotulo")), r.getInt("codigo"), r.getDouble("valor"), r.getBoolean("receita"), r.getString("nome"), r.getString("validade")));
             }
             r.close();
         } catch (SQLException ex) {

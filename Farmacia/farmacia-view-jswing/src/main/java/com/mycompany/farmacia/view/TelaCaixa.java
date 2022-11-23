@@ -150,11 +150,11 @@ public class TelaCaixa extends javax.swing.JFrame {
                                 .addGap(15, 15, 15)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
+                                .addGap(17, 17, 17)
                                 .addComponent(buscarField, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(botaoBuscar)))
-                        .addGap(18, 18, 18)
+                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(botaoCancelar)
@@ -172,12 +172,12 @@ public class TelaCaixa extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buscarField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botaoBuscar))
@@ -190,8 +190,8 @@ public class TelaCaixa extends javax.swing.JFrame {
                             .addComponent(botaoFinalizar)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,15 +212,15 @@ public class TelaCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void buscarFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarFieldActionPerformed
-       try{
-        preencherTabela();
-       }catch(NegocioException ex){
-           JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-       }
+
     }//GEN-LAST:event_buscarFieldActionPerformed
 
     private void botaoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscarActionPerformed
-        // TODO add your handling code here:
+        try{
+            preencherTabela();
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_botaoBuscarActionPerformed
 
     /**
@@ -254,15 +254,15 @@ public class TelaCaixa extends javax.swing.JFrame {
         
     }
      private static DefaultTableModel model;
-        public void preencherTabela() throws NegocioException{
-        
+     public void preencherTabela() throws NegocioException {
+
         model = (DefaultTableModel) tabela.getModel();
         model.getDataVector().removeAllElements();
         model.setNumRows(0);
-        Object colunas[] = new Object[5];
         List<Produto> p = ManterProduto.consultarProduto(buscarField.getText());
-        for(Produto produto: p){
-            model.addRow(new Object[] {produto.getCodigo() , produto.getNome(), produto.getReceita(), produto.getValor()});
+        for (Produto produto : p) {
+            System.out.println("\n\n" + produto.getNome() + "\n\n");
+            model.addRow(new Object[]{produto.getCodigo(), produto.getNome(), produto.getReceita(), produto.getValor()});
             /*System.out.println("a");
             for(Contato contato: c){
                 colunas[0] = contato.getNome();
@@ -273,7 +273,7 @@ public class TelaCaixa extends javax.swing.JFrame {
                 model.addRow(colunas);
         }*/
 
-    }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

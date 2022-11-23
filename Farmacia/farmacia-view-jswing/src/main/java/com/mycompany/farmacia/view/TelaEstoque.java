@@ -22,7 +22,7 @@ public class TelaEstoque extends javax.swing.JFrame {
     /**
      * Creates new form TelaEstoque
      */
-     public TelaEstoque() {
+    public TelaEstoque() {
         setLocationRelativeTo(null);
         initComponents();
         preencherTabela();
@@ -45,6 +45,11 @@ public class TelaEstoque extends javax.swing.JFrame {
         botaoAdicionarProduto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(10, 50, 196));
 
@@ -120,7 +125,7 @@ public class TelaEstoque extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(botaoAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 472, Short.MAX_VALUE))
+                        .addGap(0, 480, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -144,8 +149,12 @@ public class TelaEstoque extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAdicionarProdutoActionPerformed
 
     private void botaoVoltarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarMenuActionPerformed
-        setVisible(false);      
+        setVisible(false);
     }//GEN-LAST:event_botaoVoltarMenuActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        preencherTabela();
+    }//GEN-LAST:event_formFocusGained
 
     /**
      * @param args the command line arguments
@@ -181,16 +190,17 @@ public class TelaEstoque extends javax.swing.JFrame {
             }
         });
     }
-        private static DefaultTableModel model;
-        public void preencherTabela(){
-        
+    private static DefaultTableModel model;
+
+    public void preencherTabela() {
+
         model = (DefaultTableModel) tabela.getModel();
-      
+
         model.setNumRows(0);
         Object colunas[] = new Object[5];
         List<Produto> p = ManterProduto.listarProduto();
-        for(Produto produto: p){
-            model.addRow(new Object[] {produto.getCodigo() , produto.getNome(), produto.getReceita(), produto.getValor()});
+        for (Produto produto : p) {
+            model.addRow(new Object[]{produto.getCodigo(), produto.getNome(), produto.getReceita(), produto.getValor()});
             /*System.out.println("a");
             for(Contato contato: c){
                 colunas[0] = contato.getNome();
@@ -201,7 +211,7 @@ public class TelaEstoque extends javax.swing.JFrame {
                 model.addRow(colunas);
         }*/
 
-    }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
