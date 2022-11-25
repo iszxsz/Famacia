@@ -5,12 +5,9 @@
  */
 package com.mycompany.farmacia.view;
 
-import com.mycompany.farmacia.dao.ProdutoDAO;
 import com.mycompany.farmacia.dto.Produto;
 import com.mycompany.farmacia.servico.ManterProduto;
-import com.mycompany.farmacia.view.TelaAdicionarProdutoEstoque;
 import java.util.List;
-import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -134,18 +131,9 @@ public class TelaEstoque extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProdutoActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                TelaAdicionarProdutoEstoque dialog = new TelaAdicionarProdutoEstoque(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+        TelaAdicionarProdutoEstoque telaAdicionarProdutoEstoque = new TelaAdicionarProdutoEstoque(this, true);
+        telaAdicionarProdutoEstoque.setVisible(true);
+        preencherTabela();
     }//GEN-LAST:event_botaoAdicionarProdutoActionPerformed
 
     private void botaoVoltarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarMenuActionPerformed
@@ -153,7 +141,7 @@ public class TelaEstoque extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoVoltarMenuActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-        preencherTabela();
+        
     }//GEN-LAST:event_formFocusGained
 
     /**
@@ -195,8 +183,8 @@ public class TelaEstoque extends javax.swing.JFrame {
     public void preencherTabela() {
 
         model = (DefaultTableModel) tabela.getModel();
-
         model.setNumRows(0);
+        
         Object colunas[] = new Object[5];
         List<Produto> p = ManterProduto.listarProduto();
         for (Produto produto : p) {
