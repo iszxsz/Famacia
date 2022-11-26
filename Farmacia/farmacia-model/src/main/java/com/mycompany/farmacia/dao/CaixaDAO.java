@@ -17,22 +17,6 @@ public class CaixaDAO {
         nota = "";
         vTotal = 0;
     }
-
-    public static void adicionarValoresCaixa(double valor) {
-        Connection conn = EstoqueBD.conectar();
-        
-        try {
-            String adicionar = "UPDATE caixa SET valor += "+ valor +" WHERE valor >= 0";
-
-            Statement stm = conn.createStatement();
-            stm.execute(adicionar);
-            System.out.println("Alterou valor no BD.");
-        } catch (SQLException ex) {
-            System.out.println("Não conseguiu alterar valor no BD.");
-        } finally {
-           EstoqueBD.desconectar(conn);
-        }
-    }
     
     private static String montarNota(){
         nota = "";
@@ -41,7 +25,7 @@ public class CaixaDAO {
             nota += p.getNome() + " " + p.getValor() + "\n";
             vTotal += p.getValor();
         }
-        nota += "TOTAL: " + vTotal;
+        nota += "\nTOTAL: " + vTotal;
         
         return nota;
     }
@@ -52,12 +36,22 @@ public class CaixaDAO {
         return montarNota();
     }
 
-    public static void venderProduto(Produto p) {
+    public static double getvTotal() {
+        return vTotal;
+    }
+
+    private static void venderProduto(Produto p) {
         RelatorioDAO.cadastrarProdutoRelatorio(p);
         ProdutoDAO.removerProdutoEstoque(p);
     }
     
     public static List<Produto> listarProdutos(){    
         return caixa;
+    }
+    
+    public static void finalizarVenda(){
+        for(Produto p: caixa){
+            venderProduto(p);
+        }
     }
 }

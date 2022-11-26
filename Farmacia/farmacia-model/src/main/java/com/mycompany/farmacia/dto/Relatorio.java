@@ -4,14 +4,43 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Relatorio {
-    private List<Produto> produtos = new ArrayList<>();
-    private List<String> dataVenda = new ArrayList<>();
+    int rotulo;
+    int codigo;
+    double valor;
+    String venda;
+    String nome;
+    String validade;
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public Relatorio(int rotulo, int codigo, double valor, String venda, String nome, String validade) {
+        this.rotulo = rotulo;
+        this.codigo = codigo;
+        this.valor = valor;
+        this.venda = venda;
+        this.nome = nome;
+        this.validade = validade;
     }
-    
-    public List<String> getDatas(){
-        return dataVenda;
+
+    public int getRotulo() {
+        return rotulo;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public String getVenda() {
+        return venda;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getValidade() {
+        return validade;
     }
 }

@@ -8,25 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManterCaixa {
-    private static List<Produto> produtosVendidos = new ArrayList<>();
+    //private static List<Produto> produtosVendidos = new ArrayList<>();
     
     public static double finalizarVenda(double valorRecebido) throws NegocioException{
-        double total = 0;
-        for (Produto p : produtosVendidos) {
-            CaixaDAO.venderProduto(p);
-            total += p.getValor();
-        }
-        
+        double total = CaixaDAO.getvTotal();
         if((valorRecebido - total) < 0)
             throw new NegocioException("Pagamento inclompleto!");
         if(valorRecebido < 0)
             throw new NegocioException("Não possivel inserir valores negativos!");
         
-        CaixaDAO.adicionarValoresCaixa(total);
+        CaixaDAO.finalizarVenda();
+        
         return valorRecebido - total; //manda troco para interface
     }
     
-    public static void adicionarAoCaixa(String info) throws NegocioException{
+    public static String adicionarAoCaixa(String info) throws NegocioException{
         if (info.isEmpty()) {
             throw new NegocioException("Preencha o campo de pesquisa!");
         } else {
@@ -37,10 +33,12 @@ public class ManterCaixa {
             }
         }
         
-        Produto[] produtos = (Produto[]) ProdutoDAO.listarProdutos().toArray();
-    }
-
-    public void selecionarProduto(Produto p) {
-        produtosVendidos.add(p);
+        List<Produto> p = ProdutoDAO.listarProdutos();
+        
+        if(p.isEmpty()){
+            throw new NegocioException("Não foi possível encontrar o id ou nome correspondente");
+        }else{
+            return CaixaDAO.adicionarAoCaixa(p.get(0));
+        }
     }
 }

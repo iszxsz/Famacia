@@ -4,6 +4,12 @@
  */
 package com.mycompany.farmacia.view;
 
+import com.mycompany.farmacia.dto.Produto;
+import com.mycompany.farmacia.dto.Relatorio;
+import com.mycompany.farmacia.servico.ManterRelatorio;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Aluno
@@ -15,6 +21,7 @@ public class TelaRelatorio extends javax.swing.JFrame {
      */
     public TelaRelatorio() {
         initComponents();
+        preencherTabela();
     }
 
     /**
@@ -29,7 +36,7 @@ public class TelaRelatorio extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -56,18 +63,33 @@ public class TelaRelatorio extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Data", "Código", "Quantidade", "Nome", "Valor"
+                "Rotulo", "Código", "Valor", "Data", "Nome", "Validade"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabela);
 
         jPanel2.setBackground(new java.awt.Color(242, 0, 0));
 
@@ -169,6 +191,30 @@ public class TelaRelatorio extends javax.swing.JFrame {
             }
         });
     }
+    
+    private static DefaultTableModel model;
+
+    public void preencherTabela() {
+
+        model = (DefaultTableModel) tabela.getModel();
+        model.setNumRows(0);
+        
+        Object colunas[] = new Object[5];
+        List<Relatorio> produto = ManterRelatorio.montarRelatorio();
+        for (Relatorio p : produto) {
+            model.addRow(new Object[]{p.getRotulo(), p.getCodigo(), p.getValor(), p.getVenda(), p.getNome(), p.getValidade()});
+            /*System.out.println("a");
+            for(Contato contato: c){
+                colunas[0] = contato.getNome();
+                colunas[1] = contato.getTelefone();
+                colunas[2] = contato.getEmail();
+                colunas[3] = contato.getEndereco();
+                colunas[4] = contato.getDataNascimento();
+                model.addRow(colunas);
+        }*/
+
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -177,6 +223,6 @@ public class TelaRelatorio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }

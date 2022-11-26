@@ -55,7 +55,7 @@ public class RotuloDAO {
             r = stm.executeQuery(consultar);
             while(r.next()){
                 System.out.println(r.getString("nome"));
-                if(r.getInt("codigo") > aux)
+                if(r.getInt("codigo") >= aux)
                     aux = r.getInt("codigo") + 1;
             }
             r.close();
