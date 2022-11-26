@@ -32,6 +32,7 @@ public class CaixaDAO {
     
     public static String adicionarAoCaixa(Produto p){
         caixa.add(p);
+        venderProduto(p);
         
         return montarNota();
     }
@@ -47,11 +48,5 @@ public class CaixaDAO {
     
     public static List<Produto> listarProdutos(){    
         return caixa;
-    }
-    
-    public static void finalizarVenda(){
-        for(Produto p: caixa){
-            venderProduto(p);
-        }
     }
 }

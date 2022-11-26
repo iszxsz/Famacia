@@ -268,6 +268,7 @@ public class TelaCaixa extends javax.swing.JFrame {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         try{
             nota.setText(ManterCaixa.adicionarAoCaixa(venderChild.getText()));
+            preencherTabela();
         } catch (NegocioException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
