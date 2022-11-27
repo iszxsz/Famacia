@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package servlet;
+
 
 import com.mycompany.farmacia.common.NegocioException;
 import java.io.IOException;
@@ -21,16 +21,14 @@ import java.util.logging.Logger;
  *
  * @author isabela
  */
-@WebServlet(urlPatterns = {"/servletLogin"})
-public class loginServlet extends HttpServlet {
+@WebServlet(name = "login", urlPatterns = {"/login"})
+public class login extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NegocioException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-            
+                
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -89,7 +87,7 @@ public class loginServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NegocioException ex) {
-            Logger.getLogger(loginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -107,7 +105,7 @@ public class loginServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NegocioException ex) {
-            Logger.getLogger(loginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

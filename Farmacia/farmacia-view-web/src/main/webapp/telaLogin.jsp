@@ -12,13 +12,13 @@
     <head>
         <meta charset="UTF-8">
         <title>Login</title>
-        <link rel="stylesheet" href="../css/telaLogin.css">
+        <link rel="stylesheet" href="css/telaLogin.css">
         <link rel="icon" href="../imgs/imagem_2022-11-04_004109381-removebg-preview.png">
     </head>
 
     <body class="align">
         <div class="grid">
-            <form class="form login" method="post" action="Servlet/loginServlet">
+            <form class="form login" method="POST" action="menuVendedor"> 
                 <div class="form__field">
                     <label for="login__username" name="usuario"><svg class="icon">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
@@ -32,7 +32,7 @@
                     <input id="login__password" type="password" name="password" class="form__input" placeholder="Senha" required="">
                 </div>
                 <div class="form__field">
-                    <input type="submit" value="Log in">
+                    <input type="submit" value="Login">
                 </div>
             </form>
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use>

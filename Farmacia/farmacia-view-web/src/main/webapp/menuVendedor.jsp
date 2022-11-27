@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Drogas Point</title>
-    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="css/menu.css">
     <link rel="icon" href="../imgs/imagem_2022-11-04_004109381-removebg-preview.png">
 </head>
 
