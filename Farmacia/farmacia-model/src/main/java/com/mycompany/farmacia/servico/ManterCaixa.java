@@ -17,8 +17,6 @@ public class ManterCaixa {
         if(valorRecebido < 0)
             throw new NegocioException("Não possivel inserir valores negativos!");
         
-        CaixaDAO.finalizarVenda();
-        
         return valorRecebido - total; //manda troco para interface
     }
     
