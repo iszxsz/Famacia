@@ -12,11 +12,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Caixa</title>
-    <link rel="stylesheet" href="../css/estoque.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" href="../imgs/imagem_2022-11-04_004109381-removebg-preview.png">
+    <link rel="stylesheet" href="css/estoque.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="imgs/imagem_2022-11-04_004109381-removebg-preview.png">
 </head>
 
 <body>

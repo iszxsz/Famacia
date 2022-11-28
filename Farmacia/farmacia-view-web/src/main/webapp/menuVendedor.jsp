@@ -13,12 +13,12 @@
     <meta charset="UTF-8">
     <title>Drogas Point</title>
     <link rel="stylesheet" href="css/menu.css">
-    <link rel="icon" href="../imgs/imagem_2022-11-04_004109381-removebg-preview.png">
+    <link rel="icon" href="imgs/imagem_2022-11-04_004109381-removebg-preview.png">
 </head>
 
 <body>
     <nav>
-        <button type="button" id="butaologout" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><img id="imagemlogout" onmouseover="this.src='../imgs/logistica.png'" onmouseout="this.src='../imgs/icons8-exit-66.png'" src="../imgs/icons8-exit-66.png"></button>
+        <button type="button" id="butaologout" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><img id="imagemlogout" onmouseover="this.src='imgs/logistica.png'" onmouseout="this.src='imgs/icons8-exit-66.png'" src="imgs/icons8-exit-66.png"></button>
         <p id="titulo">DROGAS POINT</p>
     </nav>
     <article>

@@ -12,14 +12,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Estoque</title>
-    <link rel="stylesheet" href="../css/estoque.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" href="../imgs/imagem_2022-11-04_004109381-removebg-preview.png">
+    <link rel="stylesheet" href="css/estoque.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="imgs/imagem_2022-11-04_004109381-removebg-preview.png">
 </head>
 
 <body>
+    <sql:setDataSource var= "conexao" driver= "com.mysql.jdbc.Driver" url= "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint" user= "admin"  password= "cefet123" />
+        <sql:query dataSource="${conexao}" var="result" >
+            select * from estoque
+        </sql:query>
     <nav>
         <a href="menuVendedor.jsp">
             <?xml version="1.0" ?>
@@ -98,7 +102,15 @@
                                 <td>Não</td>
                                 <td>R$8,90</td>
                             </tr>
-
+                            <c:forEach var="row" items="${result.rows}">
+                            <tr>
+                                <td><c:out value = "${row.codigo}"/></td>
+                                <td><c:out value = "${row.quantidade}"/></td>
+                                <td><c:out value = "${row.nome}"/></td>
+                                <td><c:out value = "R$ ${row.receita}"/></td>
+                                <td><c:out value = "R$ ${row.receita}"/></td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
