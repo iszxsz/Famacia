@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page language="java" import="com.mycompany.farmacia.*"%>
+<%@page language="java" import="com.mycompany.farmacia.servico.ManterLogin"%>
 <!DOCTYPE html>
 <html>
 
@@ -13,7 +13,7 @@
         <meta charset="UTF-8">
         <title>Login</title>
         <link rel="stylesheet" href="css/telaLogin.css">
-        <link rel="icon" href="../imgs/imagem_2022-11-04_004109381-removebg-preview.png">
+        <link rel="icon" href="imgs/imagem_2022-11-04_004109381-removebg-preview.png">
     </head>
 
     <body class="align">
