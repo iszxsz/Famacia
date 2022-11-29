@@ -1,11 +1,4 @@
-<%-- 
-    Document   : telaLogin
-    Created on : 8 de nov de 2022, 11:19:36
-    Author     : Aluno
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page language="java" import="com.mycompany.farmacia.servico.ManterLogin"%>
 <%
     String user = (String) request.getAttribute("user");
     String senha = (String) request.getAttribute("senha");

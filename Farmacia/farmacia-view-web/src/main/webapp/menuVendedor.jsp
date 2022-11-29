@@ -1,11 +1,5 @@
-<%-- 
-    Document   : menuVendedor
-    Created on : 8 de nov de 2022, 11:20:41
-    Author     : Aluno
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page language="java" import="com.mycompany.farmacia.*"%>
 <!DOCTYPE html>
 <html>
 

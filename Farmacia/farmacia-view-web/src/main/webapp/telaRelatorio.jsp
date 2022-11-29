@@ -1,11 +1,4 @@
-<%-- 
-    Document   : telaRelatorio
-    Created on : 8 de nov de 2022, 12:22:35
-    Author     : Aluno
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page language="java" import="com.mycompany.farmacia.*"%>
 <!DOCTYPE html>
 <html>
 

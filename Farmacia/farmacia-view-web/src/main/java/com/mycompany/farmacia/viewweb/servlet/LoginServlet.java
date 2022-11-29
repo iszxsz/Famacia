@@ -41,9 +41,9 @@ public class LoginServlet extends HttpServlet {
                  rd.forward(request, response); //acessado gerente
             }
         } catch (NegocioException ex) {
-             //out.println("Não é  possivel logar");
-             RequestDispatcher rd = request.getRequestDispatcher("/telaCaixa.jsp");
-                 rd.forward(request, response);
+             out.println("Não é  possivel logar");
+             //RequestDispatcher rd = request.getRequestDispatcher("/telaCaixa.jsp");
+              //   rd.forward(request, response);
         }
         
     }
