@@ -6,6 +6,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page language="java" import="com.mycompany.farmacia.servico.ManterLogin"%>
+<%
+    String user = (String) request.getAttribute("user");
+    String senha = (String) request.getAttribute("senha");
+%>
 <!DOCTYPE html>
 <html>
 
