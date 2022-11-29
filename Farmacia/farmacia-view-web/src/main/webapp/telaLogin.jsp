@@ -18,7 +18,7 @@
 
     <body class="align">
         <div class="grid">
-            <form class="form login" method="POST" action="login"> 
+            <form class="form login" method="POST" action="LoginServlet"> 
                 <div class="form__field">
                     <label for="login__username" name="usuario"><svg class="icon">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
