@@ -2,7 +2,12 @@ package com.mycompany.farmacia.bd;
 
 import java.sql.*;
 
+
 public class EstoqueBD {
+private static final String DRIVER = "com.mysql.jdbc.Driver";
+private static final String URL = "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint";
+private static final String USUARIO = "admin";
+private static final String SENHA = "cefet123";
 
     public static Connection conectar() {
         Connection conn = null;
@@ -16,6 +21,13 @@ public class EstoqueBD {
             System.out.println("Erro: Não encontrou o driver do BD.");
         }
 
+        return conn;
+    }
+    public static Connection conectarBD() throws ClassNotFoundException, SQLException{
+        Class.forName(DRIVER);
+        
+        Connection conn = DriverManager.getConnection(URL, USUARIO, SENHA);
+        
         return conn;
     }
 

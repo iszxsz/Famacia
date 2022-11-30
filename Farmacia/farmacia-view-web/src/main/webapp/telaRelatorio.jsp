@@ -14,7 +14,7 @@
 
 <body>
     <sql:setDataSource var= "conexao" driver= "com.mysql.jdbc.Driver" url= "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint" user= "admin"  password= "cefet123" />
-        <sql:query dataSource="${conexao}" var="result" >
+        <sql:query dataSource="jdbc/DefaultDS" var="result" >
             select * from relatorio
         </sql:query>
     <nav>

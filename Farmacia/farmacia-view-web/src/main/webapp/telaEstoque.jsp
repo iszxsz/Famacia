@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-
+<%@page import="com.mycompany.farmacia.bd.EstoqueBD" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 <!DOCTYPE html>
 <html>
@@ -16,8 +17,8 @@
 </head>
 
 <body>
-    <sql:setDataSource var= "conexao" driver= "com.mysql.jdbc.Driver" url= "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint" user= "admin"  password= "cefet123" />
-        <sql:query dataSource="${conexao}" var="result" >
+    <sql:setDataSource var= "conn" driver= "com.mysql.jdbc.Driver" url= "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint" user= "admin"  password= "cefet123" />
+        <sql:query dataSource="${conn}" var="result" >
             select * from estoque
         </sql:query>
     <nav>
@@ -82,59 +83,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr scope="row">
-
-
-
-                                <td>
-                                    #0001
-                                </td>
-                                <td>69x</td>
-                                <td>
-                                    Álcool em Gel
-                                </td>
-                                <td>Não</td>
-                                <td>R$49,99</td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>#0002</td>
-                                <td>14x</td>
-                                <td>
-                                    Dipirona
-                                </td>
-                                <td>Não</td>
-                                <td>R$37,50</td>
-                            </tr>
-                            <tr>
-
-                                <td>#0003</td>
-                                <td>21x</td>
-                                <td>
-                                    Água
-                                </td>
-                                <td>Não</td>
-                                <td>R$2,50</td>
-                            </tr>
-                            <tr>
-
-                                <td>#0004</td>
-                                <td>34x</td>
-                                <td>
-                                    Colírio
-                                </td>
-                                <td>Não</td>
-                                <td>R$8,90</td>
-                            </tr>
                             <c:forEach var="row" items="${result.rows}">
                             <tr>
                                 <td><c:out value = "${row.codigo}"/></td>
                                 <td><c:out value = "${row.quantidade}"/></td>
                                 <td><c:out value = "${row.nome}"/></td>
-                                <td><c:out value = "R$ ${row.receita}"/></td>
-                                <td><c:out value = "R$ ${row.receita}"/></td>
+                                <td><c:out value = "${row.receita}"/></td>
+                                <td><c:out value = "${row.receita}"/></td>
                             </tr>
                         </c:forEach>
 
@@ -160,25 +115,19 @@
         // When the user clicks the button, open the modal 
         btn.onclick = function() {
             modal.style.display = "block";
-        }
+        };
 
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
             modal.style.display = "none";
-        }
+        };
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
-        }
-     $('#editarFun').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget)
-                var recipient = button.data('id')
-                var modal = $(this)
-                modal.find('#identificacao').val(recipient)
-            })
+        };
     </script>
     
 
