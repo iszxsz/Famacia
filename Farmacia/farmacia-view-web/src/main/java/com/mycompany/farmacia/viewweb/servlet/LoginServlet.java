@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
                     }//acessado pelo vendedor
                
             else{
-                RequestDispatcher rd = request.getRequestDispatcher("/menuVendedor.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/menuGerente.jsp");
                  rd.forward(request, response); //acessado gerente
             }
         } catch (NegocioException ex) {
