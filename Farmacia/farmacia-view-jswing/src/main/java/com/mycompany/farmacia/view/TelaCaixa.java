@@ -28,6 +28,7 @@ public class TelaCaixa extends javax.swing.JFrame {
         
         setLocationRelativeTo(null);
         initComponents();
+        setLocationRelativeTo(null);
         preencherTabela();
     }
 

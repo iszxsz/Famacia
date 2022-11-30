@@ -39,6 +39,7 @@ public class TelaAdicionarProdutoEstoque extends javax.swing.JDialog {
     public TelaAdicionarProdutoEstoque(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
 
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
