@@ -1,5 +1,5 @@
-
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -16,6 +16,10 @@
 </head>
 
 <body>
+    <sql:setDataSource var= "conn" driver= "com.mysql.jdbc.Driver" url= "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint" user= "admin"  password= "cefet123" />
+        <sql:query dataSource="${conn}" var="result" >
+            select * from estoque
+        </sql:query>
     <nav>
         <a href="menuVendedor.jsp">
             <?xml version="1.0" ?>

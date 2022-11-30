@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="com.mycompany.farmacia.bd.EstoqueBD" %>
+<%@page import="com.mycompany.farmacia.servico.ManterProduto" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
@@ -83,13 +83,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="row" items="${result.rows}">
+                            <c:forEach var="row" items="${p.rows}">
                             <tr>
-                                <td><c:out value = "${row.codigo}"/></td>
-                                <td><c:out value = "${row.quantidade}"/></td>
-                                <td><c:out value = "${row.nome}"/></td>
-                                <td><c:out value = "${row.receita}"/></td>
-                                <td><c:out value = "${row.receita}"/></td>
+                                <td><c:out value = "${row.produto.getCodigo()}"/></td>
+                                <td><c:out value = "${row.produto.getNome()}"/></td>
+                                <td><c:out value = "${row.produto.getReceita()}"/></td>
+                                <td><c:out value = "${row.produto.getValor()}"/></td>
+                                
                             </tr>
                         </c:forEach>
 

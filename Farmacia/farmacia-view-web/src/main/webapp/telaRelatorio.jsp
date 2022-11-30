@@ -1,4 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.mycompany.farmacia.bd.EstoqueBD" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -13,8 +17,8 @@
 </head>
 
 <body>
-    <sql:setDataSource var= "conexao" driver= "com.mysql.jdbc.Driver" url= "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint" user= "admin"  password= "cefet123" />
-        <sql:query dataSource="jdbc/DefaultDS" var="result" >
+    <sql:setDataSource var= "conn" driver= "com.mysql.jdbc.Driver" url= "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint" user= "admin"  password= "cefet123" />
+        <sql:query dataSource="${conn}" var="result" >
             select * from relatorio
         </sql:query>
     <nav>
@@ -41,71 +45,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr scope="row">
-
-
-
-                            <td>
-                                10/03/2023
-                            </td>
-                            <td>#0001</td>
-                            <td>
-                                4x
-                            </td>
-                            <td>Álcool em gel</td>
-                            <td>R$49,99</td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>29/03/2023</td>
-                            <td>#0002</td>
-                            <td>
-                                9x
-                            </td>
-                            <td>Dipirona</td>
-                            <td>R$37,50</td>
-                        </tr>
-                        <tr>
-
-                            <td>17/02/2023</td>
-                            <td>#0003</td>
-                            <td>
-                                24x
-                            </td>
-                            <td>Água</td>
-                            <td>R$2,50</td>
-                        </tr>
-                        <tr>
-
-                            <td>14/01/2023</td>
-                            <td>#0004</td>
-                            <td>
-                                12x
-                            </td>
-                            <td>Colírio</td>
-                            <td>R$8,90</td>
-                        </tr>
                         <c:forEach var="row" items="${result.rows}">
                             <tr>
                                 <td><c:out value = "${row.codigo}"/></td>
                                 <td><c:out value = "${row.quantidade}"/></td>
                                 <td><c:out value = "${row.nome}"/></td>
-                                <td><c:out value = "R$ ${row.receita}"/></td>
-                                <td><c:out value = "R$ ${row.receita}"/></td>
+                                <td><c:out value = "${row.receita}"/></td>
+                                <td><c:out value = "${row.receita}"/></td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
             </div>
-
-
         </div>
-
     </div>
     <div class="total">
-        <h1>TOTAL: R$704,26</h1>
+        <h1><c:out value = "R$ ${vValor}"/></h1>
     </div>
 </body>
 

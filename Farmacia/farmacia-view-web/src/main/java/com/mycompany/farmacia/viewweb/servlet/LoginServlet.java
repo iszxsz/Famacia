@@ -41,9 +41,9 @@ public class LoginServlet extends HttpServlet {
                  rd.forward(request, response); //acessado gerente
             }
         } catch (NegocioException ex) {
-             out.println("Não é  possivel logar");
-             //RequestDispatcher rd = request.getRequestDispatcher("/telaCaixa.jsp");
-              //   rd.forward(request, response);
+             request.setAttribute("errorMessage", "Invalid user or password");
+             RequestDispatcher rd = request.getRequestDispatcher("/telaLogin.jsp");
+             rd.forward(request, response);     
         }
         
     }
