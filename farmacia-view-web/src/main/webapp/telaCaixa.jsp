@@ -47,60 +47,20 @@
                             <tr>
 
                                 <th scope="col ">Código</th>
-                                <th scope="col ">Quantidade</th>
                                 <th scope="col ">Nome</th>
                                 <th scope="col ">Rótulo</th>
                                 <th scope="col ">Preço</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr scope="row ">
-
-
-
-                                <td>
-                                    #0001
-                                </td>
-                                <td>2</td>
-                                <td>
-                                    Álcool em gel
-                                </td>
-                                <td>9569</td>
-                                <td>R$49,99</td>
-
-                            </tr>
-
+                            <c:forEach var="row" items="${result.rows}">
                             <tr>
-
-                                <td>#0002</td>
-                                <td>1</td>
-                                <td>
-                                    Dipirona
-                                </td>
-                                <td>181</td>
-                                <td>R$37,50</td>
+                                <td><c:out value = "${row.codigo}"/></td>
+                                <td><c:out value = "${row.nome}"/></td>
+                                <td><c:out value = "${row.rotulo}"/></td>
+                                <td><c:out value = "${row.valor}"/></td>
                             </tr>
-                            <tr>
-
-                                <td>#0003</td>
-                                <td>2</td>
-                                <td>
-                                    Água
-                                </td>
-                                <td>23623</td>
-                                <td>R$2,50</td>
-                            </tr>
-                            <tr>
-
-                                <td>#0004</td>
-                                <td>1</td>
-                                <td>
-                                    Colírio
-                                </td>
-                                <td>54154814</td>
-                                <td>R$8,90</td>
-                            </tr>
-
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
