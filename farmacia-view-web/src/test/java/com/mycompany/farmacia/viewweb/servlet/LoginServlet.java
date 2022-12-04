@@ -16,6 +16,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet(urlPatterns = "/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -53,7 +57,11 @@ public class LoginServlet extends HttpServlet {
             }
         } catch (NegocioException ex) {
              out.println("Não é  possivel logar");
-        }
+        }   catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

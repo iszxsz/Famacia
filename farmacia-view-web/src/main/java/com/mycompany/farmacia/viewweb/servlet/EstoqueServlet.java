@@ -7,7 +7,7 @@ package com.mycompany.farmacia.viewweb.servlet;
 
 
 import com.mycompany.farmacia.common.NegocioException;
-import com.mycompany.farmacia.servico.ManterLogin;
+import com.mycompany.farmacia.servico.ManterProduto;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 //import java.io.PrintWriter;
@@ -16,43 +16,36 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
-import static java.lang.System.out;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@WebServlet(name = "LoginServlet", urlPatterns = "/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "EstoqueServlet", urlPatterns = "/EstoqueServlet")
+public class EstoqueServlet extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, NoSuchAlgorithmException, NegocioException {
         response.setContentType("text/html;charset=UTF-8");
                  
-        String user = request.getParameter("username");
-        String senha = request.getParameter("password");
+        String nome = request.getParameter("nome");
+        String rotulo = request.getParameter("rotulo");
+        String quantidade = request.getParameter("quantidade");
+        double preco = Double.parseDouble(request.getParameter("preco"));
+        String validade = request.getParameter("validade");
+        String radio[] = request.getParameterValues("bula");
+        String bula = radio[0];
+        boolean precisaBula;
         
-        try {
-            if (!ManterLogin.verificarLogin(user, senha)) {
-                  RequestDispatcher rd = request.getRequestDispatcher("/menuVendedor.jsp");
-                  rd.forward(request, response);
-
-                    }//acessado pelo vendedor
-               
-            else{
-                RequestDispatcher rd = request.getRequestDispatcher("/menuGerente.jsp");
-                 rd.forward(request, response); //acessado gerente
-            }
-        } catch (NegocioException ex) {
-             request.setAttribute("errorMessage", "Invalid user or password");
-             RequestDispatcher rd = request.getRequestDispatcher("/telaLogin.jsp");
-             rd.forward(request, response);     
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if(bula.equals("sim"))
+            precisaBula = true;
+        else
+            precisaBula = false;
+        
+        ManterProduto.adicionarProduto(rotulo, preco, precisaBula, nome, validade);
+        
+        RequestDispatcher forward = request.getRequestDispatcher("telaEstoque.jsp");
+        forward.forward(request, response);
         
     }
 
@@ -68,7 +61,13 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NegocioException ex) {
+            Logger.getLogger(EstoqueServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -82,7 +81,13 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NegocioException ex) {
+            Logger.getLogger(EstoqueServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

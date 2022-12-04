@@ -18,10 +18,7 @@
 </head>
 
 <body>
-    <sql:setDataSource var= "conn" driver= "com.mysql.jdbc.Driver" url= "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint" user= "admin"  password= "cefet123" />
-        <sql:query dataSource="${conn}" var="result" >
-            select * from estoque
-        </sql:query>
+    
     <nav>
         <a href="menuVendedor.jsp">
             <?xml version="1.0" ?>
@@ -43,28 +40,28 @@
                         <span class="close">&times;</span>                  
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post">
-                            <label for="POST-name">Nome:</label>
-                            <input id="POST-name" type="text" name="name"> <br>
-                            <label for="POST-name">Rótulo:</label>
-                            <input id="POST-name" type="text" name="name"> <br>
-                            <label for="POST-name">Quantidade:</label>
-                            <input id="POST-name" type="text" name="name"> <br>
-                            <label for="POST-name">Preço:</label>
-                            <input id="POST-name" type="text" name="name"> <br>
-                            <label for="POST-name">Validade:</label>
-                            <input id="POST-name" type="text" name="name"><br>
-                            <label for="POST-name">Precisa de Bula:</label>
-                            <input type="radio" id="sim" name="bula" value="sim">
-                            <label for="html">Sim</label>
-                            <input type="radio" id="nao" name="bula" value="nao">
-                            <label for="css">Não</label><br>
-                          </form>
+                        <form action="EstoqueServlet" method="post">
+                            <label for="nomeProduto">Nome:</label>
+                            <input id="nomeProduto" type="text" name="nome"> <br>
+                            <label for="rotuloProduto">Rótulo:</label>
+                            <input id="rotuloProduto" type="text" name="rotulo"> <br>
+                            <label for="quantidade">Quantidade:</label>
+                            <input id="quantidade" type="text" name="quantidade"> <br>
+                            <label for="precoProduto">Preço:</label>
+                            <input id="precoProduto" type="text" name="preco"> <br>
+                            <label for="validadeProduto">Validade:</label>
+                            <input id="validadeProduto" type="text" name="validade"><br>
+                            <label for="bula">Precisa de Bula:</label>
+                            <input type="radio" id="bula" name="bula" value="sim" >
+                            <label for="sim">Sim</label>
+                            <input type="radio" id="bula" name="bula" value="nao" checked>
+                            <label for="nao">Não</label><br>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="butaco" onclick="document.getElementById('myModal').style.display='none'">Adicionar</button>
+                        <button type="submit" class="butaco" onclick="document.getElementById('myModal').style.display='none'">Adicionar</button>
                         <button type="button" class="butaco2" onclick="document.getElementById('myModal').style.display='none'" class="cancelbtn">Cancelar</button>
                     </div>
+                    </form>
                 </div>
     
             </div>
@@ -82,12 +79,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <sql:setDataSource var= "conn" driver= "com.mysql.jdbc.Driver" url= "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint" user= "admin"  password= "cefet123" />
+                            <sql:query dataSource="${conn}" var="result" >
+                                select * from estoque
+                        </sql:query>
                         <c:forEach var="row" items="${result.rows}">
                             <tr>
                                 <td><c:out value = "${row.codigo}"/></td>
                                 <td><c:out value = "${row.nome}"/></td>
-                                <td><c:out value = "${row.receita}"/></td>
+                                 <td>
+                                    <c:if test="${row.receita == true}">
+                                        Precisa de receita!
+                                    </c:if>
+                                    <c:if test="${row.receita == false}">
+                                        Não precisa de receita!
+                                    </c:if>
+                                 </td>
                                 <td><c:out value = "${row.valor}"/></td>
+                                <td><button></button></td>
                             </tr>
                         </c:forEach>
 
