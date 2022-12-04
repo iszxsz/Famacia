@@ -11,6 +11,10 @@ import com.mycompany.farmacia.common.PersistenciaException;
 import com.mycompany.farmacia.servico.ManterLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
@@ -187,6 +191,10 @@ public class AdicionarVendedor extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Usuário adicionado");
         } catch (PersistenciaException | NegocioException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AdicionarVendedor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(AdicionarVendedor.class.getName()).log(Level.SEVERE, null, ex);
         } finally{
             doClose(RET_CANCEL);
         }
