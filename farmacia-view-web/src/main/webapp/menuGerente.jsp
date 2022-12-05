@@ -46,11 +46,11 @@
                     <h2 id="titulomodal">Cadastrar funcionário</h2>
                 </div>
                 <div class="modal-body ">
-                    <form action=" " method="post">
+                    <form action="NewLoginServlet" method="post">
                         <label for="POST-name">Usuário:</label>
                         <input id="POST-name" type="text" name="usuario"> <br>
                         <label for="POST-name">Senha:</label>
-                        <input id="POST-name" type="text" name="senha "> <br>
+                        <input id="POST-name" type="text" name="senha"> <br>
                 </div>
                 <div class="modal-footer ">
                     <button type="submit" class="butaco " onclick="document.getElementById( 'myModal').style.display='none' ">Adicionar</button>
