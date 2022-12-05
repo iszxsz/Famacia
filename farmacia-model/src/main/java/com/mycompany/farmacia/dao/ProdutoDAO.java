@@ -143,6 +143,5 @@ public class ProdutoDAO {
     
     public static List<Produto> listarProdutos(){    
         return produtos;
-        //lista
     }
 }

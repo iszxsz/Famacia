@@ -70,6 +70,7 @@
         </p>
     </bottom>
     <script>
+        setarTipoLogin();
         // Get the modal
         var modal = document.getElementById("myModal ");
 
@@ -95,5 +96,7 @@
                 modal.style.display = "none ";
             }
         }
+        
+        function setarTipoLogin(){sessionStorage.setItem("logGerente", true);}
     </script>
 </body>
