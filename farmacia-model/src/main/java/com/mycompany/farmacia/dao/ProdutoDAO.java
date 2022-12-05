@@ -24,7 +24,7 @@ public class ProdutoDAO {
         produtos.clear();
         
         try{
-            String consultar = "SELECT * FROM `estoque`";
+            String consultar = "SELECT * FROM `estoque` ORDER BY codigo";
             ResultSet r = null;
             
             Statement stm = conn.createStatement();

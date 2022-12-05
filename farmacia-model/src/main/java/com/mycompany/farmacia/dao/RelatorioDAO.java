@@ -45,7 +45,7 @@ public class RelatorioDAO {
         Connection conn = EstoqueBD.conectar();
         
         try{
-            String consultar = "SELECT * FROM `relatorio`";
+            String consultar = "SELECT * FROM `relatorio` ORDER BY codigo";
             ResultSet r = null;
             
             Statement stm = conn.createStatement();
