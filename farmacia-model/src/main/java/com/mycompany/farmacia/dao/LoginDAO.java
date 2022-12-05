@@ -6,12 +6,36 @@ import java.security.NoSuchAlgorithmException;
 import com.mycompany.farmacia.bd.EstoqueBD;
 import java.math.BigInteger;
 import java.sql.*;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
  * @author aluno
  */
 public class LoginDAO {
+    private static List<String> logins;
+    static{
+        logins = new ArrayList<>();
+    }
+    
+    public static void consultarBD(){
+        Connection conn = EstoqueBD.conectar();
+        
+        try{
+            String consultar = "SELECT * FROM `login`";
+            ResultSet r = null;
+            Statement stm = conn.createStatement();
+                r = stm.executeQuery(consultar);
+                while (r.next()) {
+                    logins.add(r.getString("usuario"));
+                }
+        } catch (SQLException ex) {
+            System.out.println("NÃ£o conseguiu consultar um produto no BD.");
+        } finally {
+            EstoqueBD.desconectar(conn);
+        }
+    }
 
     public static int verificarLogin(String nome, String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         Connection conn = EstoqueBD.conectar();
@@ -74,8 +98,6 @@ public class LoginDAO {
         }
     }
 
-    
-
     public static String criptografarSenha(String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigest md;
         String senhaCripto;
@@ -84,5 +106,9 @@ public class LoginDAO {
 
         senhaCripto = hash.toString(16);
         return senhaCripto;
+    }
+    
+    public static List<String> listarLogins(){
+        return logins;
     }
 }

@@ -5,6 +5,7 @@ import com.mycompany.farmacia.common.PersistenciaException;
 import com.mycompany.farmacia.dao.LoginDAO;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 //import com.mycompany.farmacia.view.TelaInicial;
 
 /**
@@ -40,4 +41,8 @@ public class ManterLogin {
         }
     }
     
+    public static List<String> listarLogins(){
+        LoginDAO.consultarBD();
+        return LoginDAO.listarLogins();
+    }
 }

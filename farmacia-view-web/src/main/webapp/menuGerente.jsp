@@ -43,20 +43,20 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
-                    <h2 id=" titulomodal ">Cadastrar funcionário</h2>
+                    <h2 id="titulomodal">Cadastrar funcionário</h2>
                 </div>
                 <div class="modal-body ">
-                    <form action=" " method="post ">
-                        <label for="POST-name ">Usuário:</label>
-                        <input id="POST-name " type="text " name="usuario"> <br>
-                        <label for="POST-name ">Senha:</label>
-                        <input id="POST-name " type="text " name="senha "> <br>
-                    </form>
+                    <form action=" " method="post">
+                        <label for="POST-name">Usuário:</label>
+                        <input id="POST-name" type="text" name="usuario"> <br>
+                        <label for="POST-name">Senha:</label>
+                        <input id="POST-name" type="text" name="senha "> <br>
                 </div>
                 <div class="modal-footer ">
-                    <button type="button " class="butaco " onclick="document.getElementById( 'myModal').style.display='none' ">Adicionar</button>
-                    <button type="button " class="butaco2 " onclick="document.getElementById( 'myModal').style.display='none' " class="cancelbtn ">Cancelar</button>
+                    <button type="submit" class="butaco " onclick="document.getElementById( 'myModal').style.display='none' ">Adicionar</button>
+                    <button type="button" class="butaco2 cancelbtn" onclick="document.getElementById( 'myModal').style.display='none' ">Cancelar</button>
                 </div>
+                </form>
             </div>
 
         </div>

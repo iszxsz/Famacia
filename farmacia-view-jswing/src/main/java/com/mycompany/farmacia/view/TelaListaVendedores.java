@@ -4,6 +4,11 @@
  */
 package com.mycompany.farmacia.view;
 
+import com.mycompany.farmacia.dto.Produto;
+import com.mycompany.farmacia.servico.ManterLogin;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author isabela
@@ -16,6 +21,7 @@ public class TelaListaVendedores extends javax.swing.JFrame {
     public TelaListaVendedores() {
         initComponents();
         setLocationRelativeTo(null);
+        preencherTabela();
     }
 
     /**
@@ -112,6 +118,19 @@ public class TelaListaVendedores extends javax.swing.JFrame {
          setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private static DefaultTableModel model;
+    
+    public void preencherTabela() {
+
+        model = (DefaultTableModel) tabela.getModel();
+        model.setNumRows(0);
+        
+        Object colunas[] = new Object[5];
+        List<String> p = ManterLogin.listarLogins();
+        for (String login : p) {
+            model.addRow(new Object[]{login});
+        }
+    }
     /**
      * @param args the command line arguments
      */
