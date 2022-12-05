@@ -55,7 +55,7 @@ public class TelaEstoque extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(254, 254, 254));
         jLabel1.setText("DROGAS POINT");
 
-        botaoVoltarMenu.setText("Voltar Menu");
+        botaoVoltarMenu.setText("Menu");
         botaoVoltarMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoVoltarMenuActionPerformed(evt);
@@ -69,7 +69,7 @@ public class TelaEstoque extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(botaoVoltarMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 449, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 483, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(453, 453, 453))
         );
