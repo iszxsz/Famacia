@@ -210,7 +210,7 @@ public class TelaLogin extends javax.swing.JDialog {
             Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-       
+       doClose(RET_CANCEL);
     }//GEN-LAST:event_okButtonActionPerformed
 
     /**
