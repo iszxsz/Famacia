@@ -30,7 +30,7 @@ public class EstoqueServlet extends HttpServlet {
                  
         String nome = request.getParameter("nome");
         String rotulo = request.getParameter("rotulo");
-        String quantidade = request.getParameter("quantidade");
+        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         double preco = Double.parseDouble(request.getParameter("preco"));
         String validade = request.getParameter("validade");
         String radio[] = request.getParameterValues("bula");
@@ -42,7 +42,8 @@ public class EstoqueServlet extends HttpServlet {
         else
             precisaBula = false;
         
-        ManterProduto.adicionarProduto(rotulo, preco, precisaBula, nome, validade);
+        for(int i = 0; i < quantidade; i++)
+            ManterProduto.adicionarProduto(rotulo, preco, precisaBula, nome, validade);
         
         RequestDispatcher forward = request.getRequestDispatcher("telaEstoque.jsp");
         forward.forward(request, response);

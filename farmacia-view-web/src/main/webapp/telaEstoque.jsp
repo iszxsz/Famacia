@@ -81,7 +81,7 @@
                         <tbody>
                         <sql:setDataSource var= "conn" driver= "com.mysql.jdbc.Driver" url= "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint" user= "admin"  password= "cefet123" />
                             <sql:query dataSource="${conn}" var="result" >
-                                select * from estoque
+                                select * from estoque order by codigo
                         </sql:query>
                         <c:forEach var="row" items="${result.rows}">
                             <tr>
