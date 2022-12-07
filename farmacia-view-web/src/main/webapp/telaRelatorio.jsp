@@ -2,6 +2,7 @@
 <%@page import="com.mycompany.farmacia.bd.EstoqueBD" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -64,7 +65,7 @@
         </div>
     </div>
     <div class="total">
-        <h1><c:out value = "R$ ${vValor}"/></h1>
+        <h1>R$<fmt:formatNumber value = "${vValor}" type="currency"/></h1>
         <form action="telaRelatorio.jsp" method="get">
             <input type="text" value="clear" style="display: none;" id="primeiro" name="clear">
             <button type="submit" id="segundo" class="btn btn-primary">Finalizar</button>
