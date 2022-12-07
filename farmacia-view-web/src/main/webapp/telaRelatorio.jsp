@@ -16,7 +16,7 @@
     <link rel="icon" href="imgs/imagem_2022-11-04_004109381-removebg-preview.png">
 </head>
 
-<body>
+<body style="overflow: auto;">
     <sql:setDataSource var= "conn" driver= "com.mysql.jdbc.Driver" url= "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint" user= "admin"  password= "cefet123" />
         <sql:query dataSource="${conn}" var="result" >
             select * from relatorio order by codigo
@@ -37,23 +37,27 @@
                     <thead>
                         <tr>
 
-                            <th scope="col">Data</th>
-                            <th scope="col">Código</th>
-                            <th scope="col">Quantidade</th>
+                            <th scope="col">CÃ³digo</th>
                             <th scope="col">Nome</th>
                             <th scope="col">Valor</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="row" items="${result.rows}">
-                            <tr>
-                                <td><c:out value = "${row.codigo}"/></td>
-                                <td><c:out value = "${row.quantidade}"/></td>
-                                <td><c:out value = "${row.nome}"/></td>
-                                <td><c:out value = "${row.receita}"/></td>
-                                <td><c:out value = "${row.receita}"/></td>
-                            </tr>
-                        </c:forEach>
+                        <c:set var="vValor" value="${0.00}"></c:set>
+                        <c:set var="clear" value="${param.clear}"></c:set>
+                        <c:if test="${!clear.equals('clear')}">
+                            <c:forEach var="row" items="${result.rows}">
+                                <c:set var="vValor" value="${vValor + row.valor}"></c:set>
+                                <tr>
+                                    <td><c:out value = "${row.codigo}"/></td>
+                                    <td><c:out value = "${row.nome}"/></td>
+                                    <td><c:out value = "${row.valor}"/></td>
+                                </tr>
+                            </c:forEach>
+                        </c:if>
+                        <c:if test="${clear.equals('clear')}">
+                            <h1>Nenhum produto passou no caixa!</h1>
+                        </c:if>
                     </tbody>
                 </table>
             </div>
@@ -61,6 +65,10 @@
     </div>
     <div class="total">
         <h1><c:out value = "R$ ${vValor}"/></h1>
+        <form action="telaRelatorio.jsp" method="get">
+            <input type="text" value="clear" style="display: none;" id="primeiro" name="clear">
+            <button type="submit" id="segundo" class="btn btn-primary">Finalizar</button>
+        </form>
     </div>
     <script>
         verificarTipoLogin();

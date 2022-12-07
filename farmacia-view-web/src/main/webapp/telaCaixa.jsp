@@ -1,15 +1,12 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="com.mycompany.farmacia.dto.Produto"%>
-<%@page import="com.mycompany.farmacia.dto.Rotulo"%>
-<%@page import="com.mycompany.farmacia.servico.ManterProduto"%>
-<%@page import="com.mycompany.farmacia.servico.ManterCaixa"%>
-<%@page import="java.util.List"%>
-<%String pesquisa = request.getParameter("pesquisa");%>
-<%String adicionarP = request.getParameter("adicionarP");%>
+<%@page import="java.util.List" %>
+<%@page import="java.util.ArrayList" %>
+<% 
+    String pesquisa = request.getParameter("pesquisa");
+%>
 <c:set var="pesquisa" value="<%= pesquisa %>"></c:set>
-<c:set var="adicionarP" value="<%= adicionarP %>"></c:set>
 <!DOCTYPE html>
 <html>
 
@@ -23,21 +20,18 @@
     <link rel="icon" href="imgs/imagem_2022-11-04_004109381-removebg-preview.png">
 </head>
 
-<body>
-    <c:if test="${pesquisa != null || pesquisa.isEmpty()}">
-        <%
-            List<Produto> p = ManterProduto.consultarProduto(pesquisa);
-        %>
-        <c:set var="result" value="<%= p.toArray() %>"></c:set>
+<body style="overflow: auto;">
+    <c:if test="${pesquisa != null}">
+        <sql:setDataSource var= "conn" driver= "com.mysql.jdbc.Driver" url= "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint" user= "admin"  password= "cefet123" />
+        <sql:query dataSource="${conn}" var="result" >
+            select * from estoque where codigo = ${pesquisa} order by codigo 
+        </sql:query>
     </c:if>
-    <c:if test="${pesquisa == null || pesquisa == ''}">
-        <%
-            List<Produto> p = ManterProduto.listarProduto();
-        %>
-        <c:set var="result" value="<%= p.toArray() %>"></c:set>
-    </c:if>
-    <c:if test="${adicionarP != null || adicionarP.isEmpty()}">
-        <c:set var="notaFiscal" value="<%= ManterCaixa.adicionarAoCaixa(adicionarP)%>"></c:set>
+    <c:if test="${pesquisa == null}">
+    <sql:setDataSource var= "conn" driver= "com.mysql.jdbc.Driver" url= "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint" user= "admin"  password= "cefet123" />
+        <sql:query dataSource="${conn}" var="result" >
+            select * from estoque order by codigo
+        </sql:query>
     </c:if>
     <nav>
         <a id="return" href="menuVendedor.jsp">
@@ -50,20 +44,33 @@
         <div class="nota">
             <form action="telaCaixa.jsp" method="post">
                 <div class="busca">
-                    <input type="text" placeholder="Pesquisar..." name="pesquisa" style="margin-top: 40px; margin-left: 30px; width: 145px; margin-bottom: .375rem">
+                    <input type="text" placeholder="Pesquisar..." name="pesquisa" style="margin-top: 20px; margin-left: 30px; width: 145px; margin-bottom: .375rem">
                     <input value="Buscar" type="submit" style=" margin-left: 30px; width: 145px; margin-bottom: .375rem">
                 </div>
                <!-- <?xml version="1.0" ?>
                  <!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg height="30px" id="Layer_1" style="enable-background:new 0 0 512 512; cursor: pointer" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M448.3,424.7L335,311.3c20.8-26,33.3-59.1,33.3-95.1c0-84.1-68.1-152.2-152-152.2c-84,0-152,68.2-152,152.2  s68.1,152.2,152,152.2c36.2,0,69.4-12.7,95.5-33.8L425,448L448.3,424.7z M120.1,312.6c-25.7-25.7-39.8-59.9-39.8-96.3  s14.2-70.6,39.8-96.3S180,80,216.3,80c36.3,0,70.5,14.2,96.2,39.9s39.8,59.9,39.8,96.3s-14.2,70.6-39.8,96.3  c-25.7,25.7-59.9,39.9-96.2,39.9C180,352.5,145.8,338.3,120.1,312.6z"/></svg>-->
-               
+                
             <h1>NOTA FISCAL:</h1>
-            <p id="notaFiscal"></p>
-            <script>
-                document.querySelector("#notaFiscal").innerHTML += <c:out value = "${notaFiscal}"/>;
-            </script>
-            <button type="button" id="primeiro" class="btn btn-danger" style="margin-top: 20px">Cancelar</button>
-            <button type="button" id="segundo" class="btn btn-primary" style="margin-top: 20px">Finalizar</button>
+            <p>
+            <c:forEach items="${requestScope.listaPreco}" var="preco">
+                <c:out value="${preco}" />
+            </c:forEach>
+            </p>
+            
             </form>
+            <form action="CaixaServlet" method="post">
+                    <div class="addCaixa">
+                        <input type="text" placeholder="Adicionar produto" name="codigo" style="margin-left: 30px; width: 145px; margin-bottom: .375rem">
+                        <input value="Adicionar" type="submit" style=" margin-left: 30px; width: 145px; margin-bottom: .375rem">
+                    </div>
+            </form>
+            <div>
+                <form action="CaixaServlet" method="post">
+                    <input type="text" style="display: none;" name="limparLista" value="limparLista" style="margin-left: 30px; width: 145px; margin-bottom: .375rem">
+                    <button type="submit" id="primeiro" class="btn btn-danger">Cancelar</button>
+                </form>
+                <button type="submit" id="segundo" class="btn btn-primary">Finalizar</button>
+            </div>
         </div>
         
         <div class=" content ">
@@ -74,22 +81,25 @@
                     <table class="table custom-table ">
                         <thead>
                             <tr>
-                                <th scope="col">Código</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Rótulo</th>
-                                <th scope="col">Preço</th>
+
+                                <th scope="col ">Código</th>
+                                <th scope="col ">Nome</th>
+                                <th scope="col ">Rótulo</th>
+                                <th scope="col ">Preço</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="row" items="${result}">
-                            <tr class="produto">
-                                <td><c:out value = "${row.getCodigo()}"/></td>
-                                <td><c:out value = "${row.getNome()}"/></td>
-                                <td><c:out value = "${row.getRotulo().getCodigo()}"/></td>
-                                <td><c:out value = "${row.getValor()}"/></td>
+                            
+                            
+                            <c:forEach var="row" items="${result.rows}">
+                            <tr>
+                                <td><c:out value = "${row.codigo}"/></td>
+                                <td><c:out value = "${row.nome}"/></td>
+                                <td><c:out value = "${row.rotulo}"/></td>
+                                <td><c:out value = "${row.valor}"/></td>
                             </tr>
                         </c:forEach>
-                    </tbody>
+                        </tbody>
                     </table>
                 </div>
 
@@ -105,14 +115,6 @@
                 let a = document.querySelector("#return");
                 a.href = "menuGerente.jsp";
             }
-        }
-        
-        let produtosTR = document.querySelectorAll(".produto");
-        
-        for(let i = 0; i < produtosTR.length; i++){
-            produtosTR[i].addEventListener('dblclick', e =>{
-                window.location.href="telaCaixa.jsp?adicionarP=" + e.currentTarget.children[1].innerHTML;
-            });
         }
     </script>
 </body>
