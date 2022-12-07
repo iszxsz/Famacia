@@ -38,6 +38,9 @@ public class CaixaDAO {
     }
 
     public static double getvTotal() {
+        caixa.clear();
+        nota = "";
+        vTotal = 0;
         return vTotal;
     }
 

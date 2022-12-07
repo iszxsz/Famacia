@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManterCaixa {
-    //private static List<Produto> produtosVendidos = new ArrayList<>();
     
     public static double finalizarVenda(double valorRecebido) throws NegocioException{
         double total = CaixaDAO.getvTotal();

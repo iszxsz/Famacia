@@ -1,7 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="com.mycompany.farmacia.servico.ManterProduto" %>
-<%@page import="com.mycompany.farmacia.bd.EstoqueBD" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="com.mycompany.farmacia.dto.Produto"%>
+<%@page import="com.mycompany.farmacia.dto.Rotulo"%>
+<%@page import="com.mycompany.farmacia.servico.ManterProduto"%>
+<%@page import="java.util.List"%>
+<%String pesquisa = request.getParameter("pesquisa");%>
+<c:set var="pesquisa" value="<%= pesquisa %>"></c:set>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 <!DOCTYPE html>
@@ -18,7 +23,18 @@
 </head>
 
 <body>
-    
+    <c:if test="${pesquisa != null || pesquisa.isEmpty()}">
+        <%
+            List<Produto> p = ManterProduto.consultarProduto(pesquisa);
+        %>
+        <c:set var="result" value="<%= p.toArray() %>"></c:set>
+    </c:if>
+    <c:if test="${pesquisa == null || pesquisa == ''}">
+        <%
+            List<Produto> p = ManterProduto.listarProduto();
+        %>
+        <c:set var="result" value="<%= p.toArray() %>"></c:set>
+    </c:if>
     <nav>
         <a id="return" href="menuVendedor.jsp">
             <?xml version="1.0" ?>
@@ -79,23 +95,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <sql:setDataSource var= "conn" driver= "com.mysql.jdbc.Driver" url= "jdbc:mysql://drogaspoint.cbl5egq4cigg.us-east-1.rds.amazonaws.com:3306/drogaspoint" user= "admin"  password= "cefet123" />
-                            <sql:query dataSource="${conn}" var="result" >
-                                select * from estoque order by codigo
-                        </sql:query>
-                        <c:forEach var="row" items="${result.rows}">
+                        <c:forEach var="row" items="${result}">
                             <tr>
-                                <td><c:out value = "${row.codigo}"/></td>
-                                <td><c:out value = "${row.nome}"/></td>
+                                <td><c:out value = "${row.getCodigo()}"/></td>
+                                <td><c:out value = "${row.getNome()}"/></td>
                                  <td>
-                                    <c:if test="${row.receita == true}">
+                                    <c:if test="${row.getReceita()}">
                                         Precisa de receita!
                                     </c:if>
-                                    <c:if test="${row.receita == false}">
+                                    <c:if test="${!row.getReceita()}">
                                         Não precisa de receita!
                                     </c:if>
                                  </td>
-                                <td><c:out value = "${row.valor}"/></td>
+                                <td><c:out value = "${row.getValor()}"/></td>
                                 <td><button></button></td>
                             </tr>
                         </c:forEach>
