@@ -67,9 +67,9 @@
             <div>
                 <form action="CaixaServlet" method="post">
                     <input type="text" style="display: none;" name="limparLista" value="limparLista" style="margin-left: 30px; width: 145px; margin-bottom: .375rem">
-                    <button type="submit" id="primeiro" class="btn btn-danger">Cancelar</button>
+                    <button type="submit" id="primeiro" class="btn btn-danger" style="margin-top: 20px">Cancelar</button>
+                    <button type="submit" id="segundo" class="btn btn-primary" style="margin-top: 20px">Finalizar</button>
                 </form>
-                <button type="submit" id="segundo" class="btn btn-primary">Finalizar</button>
             </div>
         </div>
         
@@ -84,7 +84,7 @@
 
                                 <th scope="col ">Código</th>
                                 <th scope="col ">Nome</th>
-                                <th scope="col ">Rótulo</th>
+                                <th scope="col ">Receita</th>
                                 <th scope="col ">Preço</th>
                             </tr>
                         </thead>
@@ -95,7 +95,12 @@
                             <tr>
                                 <td><c:out value = "${row.codigo}"/></td>
                                 <td><c:out value = "${row.nome}"/></td>
-                                <td><c:out value = "${row.rotulo}"/></td>
+                                <td><c:if test="${row.receita == true}">
+                                        Precisa de receita!
+                                    </c:if>
+                                    <c:if test="${row.receita == false}">
+                                        Não precisa de receita!
+                                    </c:if></td>
                                 <td><c:out value = "${row.valor}"/></td>
                             </tr>
                         </c:forEach>
